@@ -70,23 +70,72 @@ let radius = 50;
     dx = 0
   }
 
-  document.addEventListener('keydown', (event) => {
-    const keyName = event.key;
-    if (keyName === 'd'){
-      dx += 30
-      setInterval(function(){
-          if(y !== 550){
-        kenJump () }else {
-          return;
-        }},500);
-    }else if (keyName === 'a'){
-      dx -= 30
-    }else if (keyName === 'w' && y === 550){
-      dy -= 200
-    } else if (keyName === 's'){
-      y = 650
-    }
-  });
+  // document.addEventListener('keyup', (event) => {
+  //   let keyName = []
+  //   keyName.push(event.key)
+  //
+  //
+  //   // const keyName = event.key;
+  //     console.log(keyName[0])
+  //     console.log(keyName[1])
+  //
+  //   if (keyName[0] === 'd' && keyName[1] === 'w'){
+  //       console.log('yep')
+  //         dx += 300
+  //         dy -= 300
+  //     } else if (keyName[0] === 'd'){
+  //     dx += 30
+  //     setInterval(function(){
+  //         if(y !== 550){
+  //       kenJump () }else {
+  //         return;
+  //       }},500);
+  //   }else if (keyName[0] === 'a'){
+  //     dx -= 30
+  //   }else if (keyName[0] === 'w' && y === 550){
+  //     dy -= 200
+  //   } else if (keyName[0] === 's'){
+  //     y = 650
+  // }
+  // keyName.length = 0;
+  //
+  // });
+
+
+
+
+setInterval(function(){
+
+  var map = {}; // You could also use an array
+  onkeydown = onkeyup = function(e){
+      e = e || event; // to deal with IE
+      map[e.keyCode] = e.type == 'keydown';
+      /* insert conditional here */
+      console.log(map)
+
+        if (map[87] === false && map[68] === false){
+            console.log('yep')
+              dx += 100
+              dy -= 100
+          } else if (map[68] === false){
+               dx += 30
+               setInterval(function(){
+                   if(y !== 550){
+                 kenJump () }else {
+                   return;
+                 }},500);
+             }else if (map[65] === false){
+               dx -= 30
+             }else if (map[87] === false && y === 550){
+               dy -= 100
+             } else if (map[83] === false){
+               y = 650
+           }
+  }
+
+  map = {};
+},1000);
+
 
 animate()
 // console.log(canvas)
