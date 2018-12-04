@@ -131,10 +131,10 @@ setInterval(function(){
              } else if (map[83] === false){
                y = 650
            }
-  }
 
-  map = {};
-},1000);
+  }
+ map = {};
+},500);
 
 
 animate()
@@ -165,7 +165,7 @@ animate()
 //         if(!player1collides(player1, player2, "x", 10)){
 //             player1.moveRight();
 //         };
-//     } 
+//     }
 // })
 
 // document.addEventListener("keydown", e => {
@@ -218,7 +218,7 @@ animate()
 //         } else {
 //             player2.image.src = player2.images[0];
 //         }
-//     }, 300);    
+//     }, 300);
 // }
 
 // const animatePlayer = (player) => {
@@ -239,7 +239,7 @@ animate()
 //         this.context = this.canvas.getContext("2d");
 //         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
 //         this.interval = setInterval(updateGameArea, 20);
-//     }, 
+//     },
 //     clear: function() {
 //         this.context.clearRect(0,0,this.canvas.width, this.canvas.height);
 //     }
