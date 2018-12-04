@@ -21,7 +21,7 @@ window.addEventListener("gamepadconnected", function(e) {
     gameArea.start();
     player1 = new Player(60, 120, 200, 350, player1Images);
     animatePlayer(player1)
-    player2 = new Player(60, 100, 750, 350, player2Images);
+    player2 = new Player(60, 100, 600, 350, player2Images);
 
     animatePlayer(player2)
     // animate2 = new Animate(player2);
