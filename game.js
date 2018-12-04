@@ -1,8 +1,8 @@
 class Game {
     constructor(){
         this.canvas = document.createElement("canvas");
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = 700;
+        this.canvas.width = 800;
+        this.canvas.height = 500;
         this.context = this.canvas.getContext("2d");
         context = this.context;
     }
