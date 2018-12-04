@@ -178,8 +178,9 @@ let movement = 8;
 let player1;
 let player2;
 const gameArea = new Game();
+let animate2;
 let player1Images = ["images/player1.png", "images/player1pos2.png"]
-let player2Images = ["images/player2.png", "images/player2pos2.png"]
+let player2Images = ["assests/sagat/sagat1.png", "assests/sagat/sagat2.png", "assests/sagat/sagatJump.png"]
 
 window.addEventListener("gamepadconnected", function(e) {
     var gp = navigator.getGamepads()[e.gamepad.index];
@@ -189,8 +190,9 @@ window.addEventListener("gamepadconnected", function(e) {
     gameArea.start();
     player1 = new Player(60, 120, 10, 500, player1Images);
     animatePlayer(player1)
-    player2 = new Player(60, 120, 830, 500, player2Images);
-    animatePlayer(player2)
+    player2 = new Player(60, 100, 830, 500, player2Images);
+    animate2 = new Animate(player2);
+    animate2.static();
     gameLoop();
   });
 
@@ -234,6 +236,7 @@ function gameLoop() {
 document.addEventListener("keydown", e => {
     if(e.key === "ArrowUp" && player2.y > 0){
         if(!player1collides(player2, player1, "y", -10)){
+            animate2.jump();
             player2.moveUp();
         };
     } else if(e.key === "ArrowDown" && player2.y + player2.height < 480){
@@ -263,14 +266,15 @@ const animatePlayer = (player) => {
 }
 
 function player1collides(a, b, axis, movement){
+  // console.log(a);
     if(axis === "x"){
-        return a.x + movement <= b.x + b.width &&
-            a.x + movement + a.width >= b.x &&
+        return a.middleX + movement <= b.middleX + 20 &&
+            a.middleX + movement + 20 >= b.middleX &&
             a.y <= b.y + b.height &&
             a.y + a.height >= b.y
     } else {
-        return a.x <= b.x + b.width &&
-        a.x + a.width >= b.x &&
+        return a.middleX <= b.middleX + 20 &&
+        a.middleX + 20 >= b.x &&
         a.y + movement <= b.y + b.height &&
         a.y + movement + a.height >= b.y
     }
