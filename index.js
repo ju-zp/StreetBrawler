@@ -104,6 +104,7 @@ let context = canvas.getContext('2d');
 
 
 
+
 // setInterval(function(){
 
 //   var map = {}; // You could also use an array
@@ -136,6 +137,38 @@ let context = canvas.getContext('2d');
 //   map = {};
 // },1000);
 
+setInterval(function(){
+
+  var map = {}; // You could also use an array
+  onkeydown = onkeyup = function(e){
+      e = e || event; // to deal with IE
+      map[e.keyCode] = e.type == 'keydown';
+      /* insert conditional here */
+      console.log(map)
+
+        if (map[87] === false && map[68] === false){
+            console.log('yep')
+              dx += 100
+              dy -= 100
+          } else if (map[68] === false){
+               dx += 30
+               setInterval(function(){
+                   if(y !== 550){
+                 kenJump () }else {
+                   return;
+                 }},500);
+             }else if (map[65] === false){
+               dx -= 30
+             }else if (map[87] === false && y === 550){
+               dy -= 100
+             } else if (map[83] === false){
+               y = 650
+           }
+
+  }
+ map = {};
+},500);
+
 
 // animate()
 // console.log(canvas)
@@ -143,8 +176,9 @@ let context = canvas.getContext('2d');
 
 
 
-var start;
 
+var start;
+let movement = 10;
 var b = 0;
 let player1;
 let player2;
@@ -200,12 +234,6 @@ function gameLoop() {
   
     start = requestAnimationFrame(gameLoop);
 }
-
-
-
-let movement = 10;
-
-
 
 document.addEventListener("keydown", e => {
     if(e.key === "ArrowUp" && player2.y > 0){
