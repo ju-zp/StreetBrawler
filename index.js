@@ -10,23 +10,31 @@ canvas.height = 700;
 //passing methods and functions to draw on canvas
 let context = canvas.getContext('2d');
 
-let kenIdle = ['./assests/ken_street_fighter.png','./assests/ken_street_fighter.png', './assests/ken_4.png']
+const kenIdle = ['./assests/ken_street_fighter.png','./assests/ken_street_fighter.png', './assests/ken_4.png']
+const kenJumping = ['./assests/ken_jumping/ken_jump1.png', './assests/ken_jumping/ken_jump2.png']
 
 let fighterSprite = new Image();
 let sprite = 0
 
-function charChange (){
-  console.log(sprite)
+function charChangeIdle (){
   sprite++;
   if (sprite >= 3 ){
     sprite = 0;
   }
   fighterSprite.src = kenIdle[sprite];
 }
+function kenJump (){
+  sprite++;
+  if (sprite >= 1 ){
+    sprite = 0;
+  }
+  fighterSprite.src = kenJumping[sprite];
+}
 
 
 
-setInterval(function(){ charChange () },500);
+setInterval(function(){ charChangeIdle () },500);
+
 //variable to hold horizontal and vertical placement values for sprite.
 let x = 50;
 let y = 550;
@@ -42,7 +50,6 @@ let radius = 50;
     context.clearRect(0, 0, innerWidth, innerHeight);
     // code to draw a circle and place it on the screen
     context.drawImage(fighterSprite, x, y);
-
     //logic to limit the movement to the size of the screen
     if (x + radius > innerWidth || x - radius < 0) {
       dx = -dx;
@@ -63,14 +70,15 @@ let radius = 50;
     dx = 0
   }
 
-
-
-
   document.addEventListener('keydown', (event) => {
     const keyName = event.key;
-
     if (keyName === 'd'){
       dx += 30
+      setInterval(function(){
+          if(y !== 550){
+        kenJump () }else {
+          return;
+        }},500);
     }else if (keyName === 'a'){
       dx -= 30
     }else if (keyName === 'w' && y === 550){
