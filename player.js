@@ -27,7 +27,7 @@ class Player {
 
     moveUp(){
         this.image.src = this.images[2];
-        this.context.drawImage(this.image, this.x, this.y) 
+        this.context.drawImage(this.image, this.x, this.y)
         this.hasJumped = true;
         console.log(this.y)
         if(this.y < 500){

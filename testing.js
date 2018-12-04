@@ -120,9 +120,6 @@ setInterval(function(){
 map = {};
 },300);
 
-
-
-
 const animatePlayer = (player) => {
     return setInterval(() =>{
         player.stage = !player.stage;
