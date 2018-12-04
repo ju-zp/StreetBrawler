@@ -29,9 +29,8 @@ class Player {
         this.image.src = this.images[2];
         this.context.drawImage(this.image, this.x, this.y) 
         this.hasJumped = true;
-        console.log(this.y)
         if(this.y < 500){
-            this.y = 250;
+            this.y = 150;
             const jump = setInterval(() => {
                 this.y += 5;
                 if(this.y >= 350){
