@@ -137,37 +137,37 @@ let context;
 //   map = {};
 // },1000);
 
-setInterval(function(){
+// setInterval(function(){
 
-  var map = {}; // You could also use an array
-  onkeydown = onkeyup = function(e){
-      e = e || event; // to deal with IE
-      map[e.keyCode] = e.type == 'keydown';
-      /* insert conditional here */
-      console.log(map)
+//   var map = {}; // You could also use an array
+//   onkeydown = onkeyup = function(e){
+//       e = e || event; // to deal with IE
+//       map[e.keyCode] = e.type == 'keydown';
+//       /* insert conditional here */
+//       console.log(map)
 
-        if (map[87] === false && map[68] === false){
-            console.log('yep')
-              dy -= 100
-              dx += 150
-          } else if (map[68] === false){
-               dx += 30
-               setInterval(function(){
-                   if(y !== 550){
-                 kenJump () }else {
-                   return;
-                 }},500);
-             }else if (map[65] === false){
-               dx -= 30
-             }else if (map[87] === false && y === 500){
-               dy -= 100
-             } else if (map[83] === false){
-               y = 650
-           }
+//         if (map[87] === false && map[68] === false){
+//             console.log('yep')
+//               dy -= 100
+//               dx += 150
+//           } else if (map[68] === false){
+//                dx += 30
+//                setInterval(function(){
+//                    if(y !== 550){
+//                  kenJump () }else {
+//                    return;
+//                  }},500);
+//              }else if (map[65] === false){
+//                dx -= 30
+//              }else if (map[87] === false && y === 500){
+//                dy -= 100
+//              } else if (map[83] === false){
+//                y = 650
+//            }
 
-  }
-map = {};
-},400);
+//   }
+// map = {};
+// },400);
 
 
 // setInterval(function(){
@@ -236,6 +236,7 @@ function buttonPressed(b) {
 }
 
 function gameLoop() {
+  // console.log("hello")
     var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
     if (!gamepads) {
       return;
