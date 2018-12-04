@@ -13,13 +13,13 @@ let animate2;
 let player1Images = ["./assests/ken_street_fighter.png", "./assests/ken_streetfighter2.png"]
 let player2Images = ["assests/sagat/sagat1.png", "assests/sagat/sagat2.png", "assests/sagat/sagatJump.png"]
 
-window.addEventListener("gamepadconnected", function(e) {
-    var gp = navigator.getGamepads()[e.gamepad.index];
-    console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-    gp.index, gp.id,
-    gp.buttons.length, gp.axes.length);
+window.addEventListener("load", function(e) {
+    // var gp = navigator.getGamepads()[e.gamepad.index];
+    // console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    // gp.index, gp.id,
+    // gp.buttons.length, gp.axes.length);
     gameArea.start();
-    player1 = new Player(60, 120, 200, 350, player1Images);
+    player1 = new Player(60, 120, 200, 370, player1Images);
     animatePlayer(player1)
     player2 = new Player(60, 100, 600, 350, player2Images);
 
