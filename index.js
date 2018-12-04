@@ -115,8 +115,8 @@ setInterval(function(){
 
         if (map[87] === false && map[68] === false){
             console.log('yep')
-              dx += 100
               dy -= 100
+              dx += 150
           } else if (map[68] === false){
                dx += 30
                setInterval(function(){
@@ -126,15 +126,15 @@ setInterval(function(){
                  }},500);
              }else if (map[65] === false){
                dx -= 30
-             }else if (map[87] === false && y === 550){
+             }else if (map[87] === false && y === 500){
                dy -= 100
              } else if (map[83] === false){
                y = 650
            }
 
   }
- map = {};
-},500);
+map = {};
+},400);
 
 
 animate()
