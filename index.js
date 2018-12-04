@@ -229,6 +229,26 @@ animate()
 //     }
 // })
 
+// document.addEventListener("keydown", e => {
+//   if(e.key === "w" && player1.y > 0){
+//       if(!player1collides(player1, player2, "y", -10)){
+//           player1.moveUp();
+//       };
+//   } else if(e.key === "s" && player1.y + player1.height < 480){
+//       if(!player1collides(player1, player2, "y", 10)){
+//           player1.moveDown();
+//       };
+//   }else if(e.key === "a" && player1.x > 0){
+//       if(!player1collides(player1, player2, "x", -10)){
+//           player1.moveLeft();
+//       };
+//   }else if(e.key === "d" && player1.x + player1.width < 900){
+//       if(!player1collides(player1, player2, "x", 10)){
+//           player1.moveRight();
+//       };
+//   }
+// })
+
 // const animatePlayer = (player) => {
 //     return setInterval(() =>{
 //         player.stage = !player.stage;
