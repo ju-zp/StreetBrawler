@@ -72,13 +72,6 @@ function kenJump (){
    }
 
 
-
-
-
-
-
-
-
 setInterval(function(){
   var map = {};
   onkeydown = onkeyup = function(e){

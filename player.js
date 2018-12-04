@@ -38,7 +38,7 @@ class Player {
         }
     };
 
-    moveUpLeft(){
+    moveUpRight(){
       this.hasJumped = true;
       console.log(this.y)
       if(this.y < 500){

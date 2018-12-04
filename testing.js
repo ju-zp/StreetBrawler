@@ -2,7 +2,7 @@
 let context;
 
 var start;
-let movement = 8;
+let movement = 20;
 let player1;
 let player2;
 const gameArea = new Game();
@@ -104,7 +104,7 @@ setInterval(function(){
       map[e.keyCode] = e.type == 'keydown';
         console.log(map)
         if (map[87] === false && map[68] === false){
-              player1.moveUpLeft();
+              player1.moveUpRight();
           } else if (map[87] === false){
                player1.moveUp();
               }else if (map[65] === false){
@@ -118,7 +118,7 @@ setInterval(function(){
          }
   }
 map = {};
-},400);
+},300);
 
 
 
