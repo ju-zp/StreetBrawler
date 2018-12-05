@@ -16,14 +16,6 @@ let animate2;
 let player1Images = ["./assests/ken_street_fighter.png", "./assests/ken_streetfighter2.png", "./assests/ken_jumping/ken_jump2.png", "./assests/kenDuck.png", "./assests/kenPunch.png"]
 let player2Images = ["assests/sagat/sagat1.png", "assests/sagat/sagat2.png", "assests/sagat/sagatJump.png", "assests/sagat/sagatDuck.png", "assests/sagat/sagatPunch.png"]
 
-window.addEventListener("gamepadconnected", function(e) {
-
-    var gp = navigator.getGamepads()[e.gamepad.index];
-    console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-    gp.index, gp.id,
-    gp.buttons.length, gp.axes.length);
-    player2 = new Player(50, 100, 600, 350, player2Images, true);
-    player2animation = new Animate(player2, context);
 
 let canvas1 = document.createElement('canvas')
 canvas1.id = 'playerOne'
@@ -68,17 +60,19 @@ clockC.fillText(time, 5 , 30);
 playerOneHealth();
 playerTwoHealth();
 
-window.addEventListener("load", function(e) {
-    // console.log(e)
-    // var gp = navigator.getGamepads()[e.gamepad.index];
-    // console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-    // gp.index, gp.id,
-    // gp.buttons.length, gp.axes.length);
+window.addEventListener("gamepadconnected", function(e) {
+    console.log(e)
+    var gp = navigator.getGamepads()[e.gamepad.index];
+    console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    gp.index, gp.id,
+    gp.buttons.length, gp.axes.length);
 
     gameArea.start();
     player1 = new Player(40, 85, 200, 370, player1Images, false);
-    
-    player1.animatePlayer();
+    player2 = new Player(40, 85, 600, 350, player2Images, true)
+    animatePlayer1;
+    animatePlayer2
+    // player1.animatePlayer();
    
     // player2animation.animation();
 
@@ -121,16 +115,24 @@ function gameLoop() {
     start = requestAnimationFrame(gameLoop);
 }
 
-const animatePlayer = (player) => {
-    return setInterval(() =>{
-        player.stage = !player.stage;
-        if(player.stage){
-            player.image.src = player.images[1];
-        } else {
-            player.image.src = player.images[0];
-        }
-    }, 300);
-}
+const animatePlayer1 = setInterval(() =>{
+    player1.stage = !player1.stage;
+    if(player1.stage){
+        player1.image.src = player1.images[1];
+    } else {
+        player1.image.src = player1.images[0];
+    }
+}, 300);
+
+const animatePlayer2 = setInterval(() =>{
+    player2.stage = !player2.stage;
+    if(player2.stage){
+        player2.image.src = player2.images[1];
+    } else {
+        player2.image.src = player2.images[0];
+    }
+}, 300);
+
 
 function player1collides(a, b, axis, movement){
     if(axis === "x"){
@@ -190,7 +192,6 @@ function updateGameArea() {
     // console.log("hello")
     gameArea.clear();
     player1.update();
-    player2animation.animation();
+    // player2animation.animation();
     player2.update();
-    
 }
