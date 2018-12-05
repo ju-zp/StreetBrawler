@@ -20,6 +20,7 @@ const playStationControls = (gp) => {
             player1.moveDown();
         }
     } else if(buttonPressed(gp.buttons[1])){
+        console.log("hello")
         player1.punch();
         setTimeout(() => {
             player1.count = 0;
@@ -48,5 +49,14 @@ const xboxControls = (gp) => {
         if(!player1collides(player2, player1, "y", 10)){
             player2.moveDown();
         }
+    } else if(buttonPressed(gp.buttons[1])){
+        player2.punch();
+        setTimeout(() => {
+            // console.log("bye")
+            player2.count = 0;
+            player2.punched = false;
+            // player2animation.static();
+        }, 400);
     }
 }
+
