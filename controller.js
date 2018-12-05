@@ -51,11 +51,13 @@ const xboxControls = (gp) => {
         }
     } else if(buttonPressed(gp.buttons[1])){
         player2.punch();
+        let itr = 0;
         setTimeout(() => {
-            // console.log("bye")
-            player2.count = 0;
-            player2.punched = false;
-            // player2animation.static();
+            if(itr === 0){
+                player2.count = 0;
+                player2.punched = false;
+                itr = 1;
+            }
         }, 400);
     }
 }

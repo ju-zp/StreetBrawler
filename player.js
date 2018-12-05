@@ -86,18 +86,23 @@ class Player {
     };
 
     punch(){
-        player2animation.punch()
-        // player2animation.active = 0;
-        this.image.src = this.images[4];
-        
+        // const oldVal = this.x
+        let itr = 0
         if(this.reversed){
-            // this.punched = true;
-            // this.x = this.x - 20
-            // this.context.drawImage(this.image, this.x - 200, this.y)
-        } else {
-            console.log("hello")
-            this.context.drawImage(this.image, this.x, this.y)
-        }
+            if(this.count === 0){
+                this.x = this.x - 20
+                this.count++;
+                const timer = setTimeout(() => {
+                    if(itr === 0){
+                        console.log("hello")
+                        this.x = this.x + 20
+                        itr = 1
+                    }
+                    clearTimeout(timer)
+                }, 400);
+            }
+        } 
+        this.image.src = this.images[4];
         let hit = false;
         if(!this.reversed){
             const reach = this.x + this.width + 15;
@@ -112,8 +117,8 @@ class Player {
             const reach = this.x - 20;
             if(reach <= player1.x + player1.width && !hit){
                 hit = true
-                if(this.count === 0){
-                    player2.health += 5;
+                if(this.count === 1){
+                    player1.health += 5;
                     this.count++;
                 }   
             }
