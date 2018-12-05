@@ -28,3 +28,7 @@ canvas {
   background: blue;
   float: right;
 }
+
+#face{
+background-color:rgba(0,0,0,0.1);
+}

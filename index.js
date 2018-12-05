@@ -29,6 +29,32 @@ let contextPlayerTwo = canvas2.getContext('2d');
 
 
 
+
+
+let clock = document.createElement('canvas')
+clock.id = 'face'
+clock.width = 40
+clock.height = 40
+
+document.querySelector('#clock').appendChild(clock)
+let clockC = clock.getContext('2d');
+let time = 60
+clockC.font = "30px Arial";
+clockC.fillText(time, 5 , 30);
+
+setInterval(function(){
+time--
+if (time >= 0){
+clockC.clearRect(0, 0, 252, 144);
+clockC.fillText(time, 5 , 30);
+}else{
+  return;
+}
+}, 1000);
+
+
+
+
 playerOneHealth();
 playerTwoHealth();
 
