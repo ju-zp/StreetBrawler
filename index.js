@@ -42,6 +42,8 @@ let time = 60
 clockC.font = "30px Arial";
 clockC.fillText(time, 5 , 30);
 
+
+
 setInterval(function(){
 time--
 if (time >= 0){
@@ -123,15 +125,6 @@ function player1collides(a, b, axis, movement){
 }
 
 
-function fullscreen(){
-let el = document.querySelector('canvas');
-           if(el.webkitRequestFullScreen) {
-               el.webkitRequestFullScreen();
-           }
-          else {
-             el.mozRequestFullScreen();
-          }
-}
 
 
 
