@@ -16,13 +16,13 @@ canvas {
   border: 3px solid #000000;
 }
 
-#playerOnehealth{
+#playerOne{
   z-index: 2;
   border: 3px solid #000000;
   background: blue;
 }
 
-#playerTwohealth{
+#playerTwo{
   border: 3px solid #000000;
   background: blue;
   float: right;

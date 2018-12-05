@@ -119,9 +119,7 @@ function playerOneHealth() {
 }
 
 function playerOneDamage(){
-  let hitter = 50;
-  contextPlayerOne.fillStyle = 'rgba(155,0,0,0.5)';
-  contextPlayerOne.fillRect(0,0,hitter,window.innerHeight);
+  contextPlayerTwo.clearRect(0, 0, dmg,window.innerHeight);
 }
 
 
@@ -133,10 +131,10 @@ function playerTwoHealth() {
 
 }
 
-function playerTwoDamage(){
-  let hitter = 50;
-  contextPlayerTwo.fillStyle = 'rgba(155,0,0,0.5)';
-  contextPlayerTwo.fillRect(0,0,hitter,window.innerHeight);
+function playerTwoDamage(dmg){
+
+  contextPlayerTwo.clearRect(0, 0, dmg,window.innerHeight);
+
 }
 
 function updateGameArea() {
