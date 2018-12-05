@@ -19,9 +19,10 @@ class Player {
 
     update(){
         this.middleX = this.x + (this.width/2);
-        this.context.fillStyle="black"
-        this.context.fillRect(this.x,this.y, this.width, this.height);
+        // this.context.fillStyle="black"
+        // this.context.fillRect(this.x,this.y, this.width, this.height);
         this.context.drawImage(this.image, this.x,this.y);
+
     };
 
     moveUp(){

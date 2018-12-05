@@ -14,7 +14,7 @@ window.onload = () => {
     gameArea.start();
     player1 = new Player(60, 120, 200, 350, player1Images);
     animatePlayer(player1)
-    player2 = new Player(60, 120, 830, 500, player2Images);
+    player2 = new Player(60, 120, 400, 350, player2Images);
     animatePlayer(player2)
     // gameLoop();
 }
