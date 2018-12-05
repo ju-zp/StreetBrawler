@@ -38,7 +38,7 @@ class Player {
         this.hasJumped = true;
         let oldVal = this.y;
         if(this.y < 500){
-            this.y = 150 
+            this.y = 150
             const jump = setInterval(() => {
                 this.y += 5;
                 if(this.y >= oldVal){
@@ -53,12 +53,12 @@ class Player {
     moveUpRight(){
       this.hasJumped = true;
       if(this.y < 500){
-          this.y = 250 
+          this.y = 250
           this.x += 100;
           const jump = setInterval(() => {
               this.y += 5;
               if(this.y >= 350){
-                  this.y = 350 
+                  this.y = 350
                   this.hasJumped = false;
                   clearInterval(jump)
               }
@@ -73,8 +73,8 @@ class Player {
         setTimeout(()=>{
             this.y = oldVal ;
         }, 200);
-        
-       
+
+
     };
 
     moveLeft(){
@@ -106,7 +106,7 @@ class Player {
                 if(this.count === 0){
                     player2.health += 5;
                     this.count++;
-                }   
+                }
             }
         } else {
             const reach = this.x - 20;

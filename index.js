@@ -24,6 +24,57 @@ window.addEventListener("gamepadconnected", function(e) {
     gp.buttons.length, gp.axes.length);
     player2 = new Player(50, 100, 600, 350, player2Images, true);
     player2animation = new Animate(player2, context);
+
+let canvas1 = document.createElement('canvas')
+canvas1.id = 'playerOne'
+canvas1.width = 200
+canvas1.height = 20
+let canvas2 = document.createElement('canvas')
+canvas2.id = 'playerTwo'
+canvas2.width = 200
+canvas2.height = 20
+
+let contextPlayerOne = canvas1.getContext('2d');
+let contextPlayerTwo = canvas2.getContext('2d');
+
+
+
+
+
+let clock = document.createElement('canvas')
+clock.id = 'face'
+clock.width = 40
+clock.height = 40
+
+document.querySelector('#clock').appendChild(clock)
+let clockC = clock.getContext('2d');
+let time = 60
+clockC.font = "30px Arial";
+clockC.fillText(time, 5 , 30);
+
+setInterval(function(){
+time--
+if (time >= 0){
+clockC.clearRect(0, 0, 252, 144);
+clockC.fillText(time, 5 , 30);
+}else{
+  return;
+}
+}, 1000);
+
+
+
+
+playerOneHealth();
+playerTwoHealth();
+
+window.addEventListener("load", function(e) {
+    // console.log(e)
+    // var gp = navigator.getGamepads()[e.gamepad.index];
+    // console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    // gp.index, gp.id,
+    // gp.buttons.length, gp.axes.length);
+
     gameArea.start();
     player1 = new Player(40, 85, 200, 370, player1Images, false);
     
@@ -58,14 +109,14 @@ function gameLoop() {
             }
         }
     }
-    
+
 
     // let gp? = gamepads[0];
     // let gp2 = gamepads[1];
 
     playStationControls(gp);
     xboxControls(gp2);
-    
+
 
     start = requestAnimationFrame(gameLoop);
 }
@@ -94,6 +145,46 @@ function player1collides(a, b, axis, movement){
         a.y + movement + a.height >= b.y
     }
 }
+
+
+function fullscreen(){
+let el = document.querySelector('canvas');
+           if(el.webkitRequestFullScreen) {
+               el.webkitRequestFullScreen();
+           }
+          else {
+             el.mozRequestFullScreen();
+          }
+}
+
+
+
+
+function playerOneHealth() {
+    document.querySelector('#health-bars').appendChild(canvas1)
+    contextPlayerOne.clearRect(0, 0, window.innerWidth,window.innerHeight);
+    contextPlayerOne.fillStyle = 'rgba(155,155,0,1)';
+    contextPlayerOne.fillRect(0,0,window.innerWidth,window.innerHeight);
+
+}
+
+function playerOneDamage(dmg){
+  contextPlayerOne.clearRect(0, 0, dmg,window.innerHeight);
+}
+
+
+function playerTwoHealth() {
+  document.querySelector('#health-bars').appendChild(canvas2)
+    contextPlayerTwo.clearRect(0, 0, window.innerWidth,window.innerHeight);
+    contextPlayerTwo.fillStyle = 'rgba(155,155,0,1)';
+    contextPlayerTwo.fillRect(0,0,window.innerWidth,window.innerHeight);
+
+}
+
+function playerTwoDamage(dmg){
+  contextPlayerTwo.clearRect(0, 0, dmg,window.innerHeight);
+}
+
 
 function updateGameArea() {
     // console.log("hello")
