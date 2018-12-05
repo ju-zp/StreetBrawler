@@ -15,12 +15,29 @@ let animate2;
 let player1Images = ["./assests/ken_street_fighter.png", "./assests/ken_streetfighter2.png", "./assests/ken_jumping/ken_jump2.png", "./assests/kenDuck.png", "./assests/kenPunch.png"]
 let player2Images = ["assests/sagat/sagat1.png", "assests/sagat/sagat2.png", "assests/sagat/sagatJump.png", "assests/sagat/sagatDuck.png"]
 
-window.addEventListener("gamepadconnected", function(e) {
+let canvas1 = document.createElement('canvas')
+canvas1.id = 'playerOne'
+canvas1.width = 200
+canvas1.height = 20
+let canvas2 = document.createElement('canvas')
+canvas2.id = 'playerTwo'
+canvas2.width = 200
+canvas2.height = 20
+
+let contextPlayerOne = canvas1.getContext('2d');
+let contextPlayerTwo = canvas2.getContext('2d');
+
+
+
+playerOneHealth();
+playerTwoHealth();
+
+window.addEventListener("load", function(e) {
     // console.log(e)
-    var gp = navigator.getGamepads()[e.gamepad.index];
-    console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-    gp.index, gp.id,
-    gp.buttons.length, gp.axes.length);
+    // var gp = navigator.getGamepads()[e.gamepad.index];
+    // console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    // gp.index, gp.id,
+    // gp.buttons.length, gp.axes.length);
     gameArea.start();
     player1 = new Player(40, 85, 200, 370, player1Images);
 
@@ -90,8 +107,11 @@ let el = document.querySelector('canvas');
           }
 }
 
-function playerOneHealth() {
 
+
+
+function playerOneHealth() {
+    document.querySelector('#health-bars').appendChild(canvas1)
     contextPlayerOne.clearRect(0, 0, window.innerWidth,window.innerHeight);
     contextPlayerOne.fillStyle = 'rgba(155,155,0,1)';
     contextPlayerOne.fillRect(0,0,window.innerWidth,window.innerHeight);
@@ -104,7 +124,7 @@ function playerOneDamage(dmg){
 
 
 function playerTwoHealth() {
-
+  document.querySelector('#health-bars').appendChild(canvas2)
     contextPlayerTwo.clearRect(0, 0, window.innerWidth,window.innerHeight);
     contextPlayerTwo.fillStyle = 'rgba(155,155,0,1)';
     contextPlayerTwo.fillRect(0,0,window.innerWidth,window.innerHeight);
