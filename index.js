@@ -5,7 +5,7 @@ let context;
 // console.log(canvas)
 
 var start;
-let movement = 4;
+let movement = 8;
 let connected = false;
 let player1;
 let player2;
@@ -13,8 +13,10 @@ let player1animation;
 let player2animation;
 const gameArea = new Game();
 let animate2;
-let player1Images = ["./assests/ken_street_fighter.png", "./assests/ken_streetfighter2.png", "./assests/ken_jumping/ken_jump2.png", "./assests/kenDuck.png", "./assests/kenPunch.png", "./assests/kenKick.png"]
-let player2Images = ["assests/sagat/sagat1.png", "assests/sagat/sagat2.png", "assests/sagat/sagatJump.png", "assests/sagat/sagatDuck.png", "assests/sagat/sagatPunch.png", "assests/sagat/sagatKick.png"]
+let player1Images = ["./assests/ken/normal/ken_street_fighter.png", "./assests/ken/normal/ken_streetfighter2.png", "./assests/ken/normal/ken_jump2.png", "./assests/ken/normal/kenDuck.png", "./assests/ken/normal/kenPunch.png", "./assests/ken/normal/kenKick.png"]
+let reversedPlayer1Images = ["./assests/ken/reverse/ken_street_fighter.png", "./assests/ken/reverse/ken_streetfighter2.png", "./assests/ken/reverse/ken_jump2.png", "./assests/ken/reverse/kenDuck.png", "./assests/ken/reverse/kenPunch.png", "./assests/ken/reverse/kenKick.png"]
+let reversedPlayer2Images = ["assests/sagat/reversed/sagat1.png", "assests/sagat/reversed/sagat2.png", "assests/sagat/reversed/sagatJump.png", "assests/sagat/reversed/sagatDuck.png", "assests/sagat/reversed/sagatPunch.png", "assests/sagat/reversed/sagatKick.png"]
+let player2Images = ["assests/sagat/normal/sagat1.png", "assests/sagat/normal/sagat2.png", "assests/sagat/normal/sagatJump.png", "assests/sagat/normal/sagatDuck.png", "assests/sagat/normal/sagatPunch.png", "assests/sagat/normal/sagatKick.png"]
 
 
 let canvas1 = document.createElement('canvas')
@@ -70,8 +72,8 @@ window.addEventListener("load", function(e) {
     // gp.buttons.length, gp.axes.length);
 
     gameArea.start();
-    player1 = new Player(40, 85, 200, 370, player1Images, false);
-    player2 = new Player(40, 85, 600, 350, player2Images, true)
+    player1 = new Player(40, 85, 200, 370, reversedPlayer1Images, player1Images, false);
+    player2 = new Player(40, 85, 600, 350, reversedPlayer2Images, player2Images, true)
     animatePlayer1;
     animatePlayer2
     // player1.animatePlayer();
@@ -175,11 +177,20 @@ function playerTwoDamage(dmg){
   contextPlayerTwo.clearRect(0, 0, dmg,window.innerHeight);
 }
 
+function playerPosition(){
+    if(player2.x > player1.x){
+        player2.reversed = true;
+        player1.reversed = false;
+    } else {
+        player2.reversed = false;
+        player1.reversed = true;
+    }
+}
 
 function updateGameArea() {
     // console.log("hello")
     gameArea.clear();
     player1.update();
-    // player2animation.animation();
+    playerPosition();
     player2.update();
 }

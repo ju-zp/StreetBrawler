@@ -1,12 +1,14 @@
 // class for player obj.
 class Player {
-    constructor(width, height, x, y, images, reversed){
+    constructor(width, height, x, y, images, reverseImages, reversed){
         this.width = width;
         this.height = height;
         this.x = x;
         this.y = y ;
         this.hasJumped = false;
-        this.images = images
+        this.normalImages = images
+        this.images = images;
+        this.reversedImages = reverseImages;
         this.stage = false;
         this.middleX = this.x + (this.width/2);
         this.image = new Image();
@@ -18,9 +20,13 @@ class Player {
     }
 
     update(){
+        if(this.reversed){
+            this.images = this.normalImages;
+        } else {
+            this.images = this.reversedImages;
+        }
         this.middleX = this.x + (this.width/2);
         this.context.drawImage(this.image, this.x,this.y);
-
     };
 
     moveUp(){
@@ -31,7 +37,7 @@ class Player {
 
 
           if(this.y < 500){
-              this.y -= 120
+              this.y -= 200
             }
 
 
@@ -89,6 +95,7 @@ class Player {
                 this.x = this.x - 20
                 this.count++;
             }
+        }
         let hit = false;
         if(!this.reversed){
             this.image.src = this.images[4];
