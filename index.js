@@ -62,12 +62,12 @@ clockC.fillText(time, 5 , 30);
 playerOneHealth();
 playerTwoHealth();
 
-window.addEventListener("gamepadconnected", function(e) {
+window.addEventListener("load", function(e) {
     console.log(e)
-    var gp = navigator.getGamepads()[e.gamepad.index];
-    console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-    gp.index, gp.id,
-    gp.buttons.length, gp.axes.length);
+    // var gp = navigator.getGamepads()[e.gamepad.index];
+    // console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    // gp.index, gp.id,
+    // gp.buttons.length, gp.axes.length);
 
     gameArea.start();
     player1 = new Player(40, 85, 200, 370, player1Images, false);
@@ -75,7 +75,7 @@ window.addEventListener("gamepadconnected", function(e) {
     animatePlayer1;
     animatePlayer2
     // player1.animatePlayer();
-   
+
     // player2animation.animation();
 
     gameLoop();
