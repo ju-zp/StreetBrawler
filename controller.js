@@ -20,11 +20,19 @@ const playStationControls = (gp) => {
             player1.moveDown();
         }
     } else if(buttonPressed(gp.buttons[1])){
-        console.log("hello")
-        player1.punch();
-        setTimeout(() => {
-            player1.count = 0;
-        }, 400);
+        if(player1.punch(player2)){
+            setTimeout(() => {
+                player1.count = 0;
+                player1.state = 'IDLE'
+            }, 400);
+        }
+    } else if(buttonPressed(gp.buttons[0])){
+        if(player1.kick(player2)){
+            setTimeout(() => {
+                player1.count = 0;
+                player1.state = 'IDLE'
+            }, 400)
+        }
     }
 }
 
@@ -41,7 +49,7 @@ const xboxControls = (gp) => {
             player2.moveLeft();
         }
     }
-    if (buttonPressed(gp.buttons[14]) && player2.x + player2.width < 1422) {
+    if (buttonPressed(gp.buttons[14]) && player2.x + player2.width < 800) {
         if(!player1collides(player2, player1, "x", 10)){
             player2.moveRight();
         }
@@ -49,16 +57,22 @@ const xboxControls = (gp) => {
         if(!player1collides(player2, player1, "y", 10)){
             player2.moveDown();
         }
-    } else if(buttonPressed(gp.buttons[1])){
-        player2.punch();
-        let itr = 0;
-        setTimeout(() => {
-            if(itr === 0){
+    } else if(buttonPressed(gp.buttons[1]) && player2.x > 0 && player2.x < 800){
+        if (player2.punch(player1)) {
+            setTimeout(() => {
                 player2.count = 0;
-                player2.punched = false;
-                itr = 1;
-            }
-        }, 400);
+                player2.x = player2.oldVal
+                player2.state = 'IDLE'
+            }, 400);
+        }
+    } else if(buttonPressed(gp.buttons[0])){
+        if (player2.kick(player1)){
+            setTimeout(() => {
+                player2.count = 0;
+                player2.x = player2.oldVal
+                player2.state = 'IDLE'
+            }, 400)
+        }   
     }
 }
 

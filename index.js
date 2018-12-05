@@ -5,7 +5,7 @@ let context;
 // console.log(canvas)
 
 var start;
-let movement = 8;
+let movement = 4;
 let connected = false;
 let player1;
 let player2;
@@ -13,8 +13,8 @@ let player1animation;
 let player2animation;
 const gameArea = new Game();
 let animate2;
-let player1Images = ["./assests/ken_street_fighter.png", "./assests/ken_streetfighter2.png", "./assests/ken_jumping/ken_jump2.png", "./assests/kenDuck.png", "./assests/kenPunch.png"]
-let player2Images = ["assests/sagat/sagat1.png", "assests/sagat/sagat2.png", "assests/sagat/sagatJump.png", "assests/sagat/sagatDuck.png", "assests/sagat/sagatPunch.png"]
+let player1Images = ["./assests/ken_street_fighter.png", "./assests/ken_streetfighter2.png", "./assests/ken_jumping/ken_jump2.png", "./assests/kenDuck.png", "./assests/kenPunch.png", "./assests/kenKick.png"]
+let player2Images = ["assests/sagat/sagat1.png", "assests/sagat/sagat2.png", "assests/sagat/sagatJump.png", "assests/sagat/sagatDuck.png", "assests/sagat/sagatPunch.png", "assests/sagat/sagatKick.png"]
 
 
 let canvas1 = document.createElement('canvas')
@@ -106,14 +106,9 @@ function gameLoop() {
         }
     }
 
-
-    // let gp? = gamepads[0];
-    // let gp2 = gamepads[1];
-
     playStationControls(gp);
     xboxControls(gp2);
-
-
+    
     start = requestAnimationFrame(gameLoop);
 }
 

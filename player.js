@@ -13,24 +13,13 @@ class Player {
         this.image.src = this.images[0];
         this.context = context;
         this.reversed = reversed;
-        this.punched = false;
         this.count = 0;
         this.health = 0;
     }
 
     update(){
         this.middleX = this.x + (this.width/2);
-        // if(this.punched && this.reversed){
-        //     console.log("helo")
-        //     this.context.drawImage(this.image, this.x - 20,this.y);
-        // } else {
         this.context.drawImage(this.image, this.x,this.y);
-        // }
-        
-        // this.context.fillStyle="black"
-        // this.context.fillRect(this.x,this.y, this.width, this.height);
-        
-
     };
 
     moveUp(){
@@ -71,10 +60,8 @@ class Player {
         const oldVal = this.y;
         this.y = this.y + (this.height/2)
         setTimeout(()=>{
-            this.y = oldVal ;
+            this.y = oldVal;
         }, 200);
-
-
     };
 
     moveLeft(){
@@ -85,54 +72,73 @@ class Player {
         this.x += movement;
     };
 
-    punch(){
-        // const oldVal = this.x
-        let itr = 0
+    punch(player){
+        if (this.state === 'PUNCHING') return false;
+        this.state = 'PUNCHING'
         if(this.reversed){
             if(this.count === 0){
+                this.oldVal = this.x;
                 this.x = this.x - 20
                 this.count++;
-                const timer = setTimeout(() => {
-                    if(itr === 0){
-                        console.log("hello")
-                        this.x = this.x + 20
-                        itr = 1
-                    }
-                    clearTimeout(timer)
-                }, 400);
             }
         } 
-        this.image.src = this.images[4];
         let hit = false;
         if(!this.reversed){
+            this.image.src = this.images[4];
             const reach = this.x + this.width + 15;
-            if(reach >= player2.x && !hit){
+            if(reach >= player.x && !hit){
                 hit = true
                 if(this.count === 0){
-                    player2.health += 5;
+                    player.health += 5;
                     this.count++;
                 }
             }
         } else {
-            const reach = this.x - 20;
-            if(reach <= player1.x + player1.width && !hit){
+            this.image.src = this.images[4];
+            const reach = this.x + 5;
+            if(reach <= player.x + player.width && !hit){
                 hit = true
                 if(this.count === 1){
-                    player1.health += 5;
+                    player.health += 5;
                     this.count++;
                 }   
             }
         }
+        return true
     }
 
-    animatePlayer(){
-        setInterval(() =>{
-            this.stage = !this.stage;
-            if(this.stage){
-                this.image.src = this.images[1];
-            } else {
-                this.image.src = this.images[0];
+    kick(player){
+        if(this.state === 'KICKING') return false;
+        this.state = 'KICKING'
+        if(this.reversed){
+            if(this.count === 0){
+                this.oldVal = this.x
+                this.x = this.x - 20
+                this.count++;
             }
-        }, 300);
+        }
+        let hit = false;
+        if(!this.reversed){
+            this.image.src = this.images[5];
+            const reach = this.x + this.width + 25;
+            if(reach >= player.x && !hit){
+                hit = true
+                if(this.count === 0){
+                    player.health += 10;
+                    this.count++;
+                }
+            }
+        } else {
+            this.image.src = this.images[5];
+            const reach = this.x;
+            if(reach <= player.x + player.width && !hit){
+                hit = true;
+                if(this.count === 1){
+                    player.health += 10;
+                    this.count++;
+                }
+            }
+        }
+        return true;
     }
 }
