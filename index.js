@@ -151,8 +151,8 @@ function playerOneHealth() {
 
 }
 
-function playerOneDamage(){
-  contextPlayerTwo.clearRect(0, 0, dmg,window.innerHeight);
+function playerOneDamage(dmg){
+  contextPlayerOne.clearRect(0, 0, dmg,window.innerHeight);
 }
 
 
@@ -165,9 +165,7 @@ function playerTwoHealth() {
 }
 
 function playerTwoDamage(dmg){
-
   contextPlayerTwo.clearRect(0, 0, dmg,window.innerHeight);
-
 }
 
 function updateGameArea() {

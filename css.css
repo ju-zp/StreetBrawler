@@ -23,6 +23,7 @@ canvas {
 }
 
 #playerTwo{
+  transform: rotate(180deg);
   border: 3px solid #000000;
   background: blue;
   float: right;
