@@ -16,14 +16,6 @@ let animate2;
 let player1Images = ["./assests/ken_street_fighter.png", "./assests/ken_streetfighter2.png", "./assests/ken_jumping/ken_jump2.png", "./assests/kenDuck.png", "./assests/kenPunch.png"]
 let player2Images = ["assests/sagat/sagat1.png", "assests/sagat/sagat2.png", "assests/sagat/sagatJump.png", "assests/sagat/sagatDuck.png", "assests/sagat/sagatPunch.png"]
 
-window.addEventListener("gamepadconnected", function(e) {
-
-    var gp = navigator.getGamepads()[e.gamepad.index];
-    console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-    gp.index, gp.id,
-    gp.buttons.length, gp.axes.length);
-    player2 = new Player(50, 100, 600, 350, player2Images, true);
-    player2animation = new Animate(player2, context);
 
 let canvas1 = document.createElement('canvas')
 canvas1.id = 'playerOne'
@@ -79,9 +71,9 @@ window.addEventListener("load", function(e) {
 
     gameArea.start();
     player1 = new Player(40, 85, 200, 370, player1Images, false);
-    
+
     player1.animatePlayer();
-   
+
     // player2animation.animation();
 
     gameLoop();
@@ -185,5 +177,5 @@ function updateGameArea() {
     player1.update();
     player2animation.animation();
     player2.update();
-    
+
 }
