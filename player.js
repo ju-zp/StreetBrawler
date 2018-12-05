@@ -13,15 +13,23 @@ class Player {
         this.image.src = this.images[0];
         this.context = context;
         this.reversed = reversed;
+        this.punched = false;
         this.count = 0;
         this.health = 0;
     }
 
     update(){
         this.middleX = this.x + (this.width/2);
+        // if(this.punched && this.reversed){
+        //     console.log("helo")
+        //     this.context.drawImage(this.image, this.x - 20,this.y);
+        // } else {
+        this.context.drawImage(this.image, this.x,this.y);
+        // }
+        
         // this.context.fillStyle="black"
         // this.context.fillRect(this.x,this.y, this.width, this.height);
-        this.context.drawImage(this.image, this.x,this.y);
+        
 
     };
 
@@ -78,8 +86,18 @@ class Player {
     };
 
     punch(){
+        player2animation.punch()
+        // player2animation.active = 0;
         this.image.src = this.images[4];
-        this.context.drawImage(this.image, this.x, this.y)
+        
+        if(this.reversed){
+            // this.punched = true;
+            // this.x = this.x - 20
+            // this.context.drawImage(this.image, this.x - 200, this.y)
+        } else {
+            console.log("hello")
+            this.context.drawImage(this.image, this.x, this.y)
+        }
         let hit = false;
         if(!this.reversed){
             const reach = this.x + this.width + 15;
@@ -91,7 +109,14 @@ class Player {
                 }
             }
         } else {
-
+            const reach = this.x - 20;
+            if(reach <= player1.x + player1.width && !hit){
+                hit = true
+                if(this.count === 0){
+                    player2.health += 5;
+                    this.count++;
+                }   
+            }
         }
     }
 
