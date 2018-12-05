@@ -2,7 +2,7 @@ const playStationControls = (gp) => {
     if (buttonPressed(gp.buttons[12])) {
         if(!player1collides(player1, player2, "y", -10)){
             if(!player1.hasJumped){
-                clearInterval(player1.animatePlayer);
+                // clearInterval(player1.animatePlayer);
               player1.moveUp();
             }
         }
@@ -61,4 +61,3 @@ const xboxControls = (gp) => {
         }, 400);
     }
 }
-

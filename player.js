@@ -26,20 +26,27 @@ class Player {
         // } else {
         this.context.drawImage(this.image, this.x,this.y);
         // }
-        
+
         // this.context.fillStyle="black"
         // this.context.fillRect(this.x,this.y, this.width, this.height);
-        
+
 
     };
 
     moveUp(){
-        this.image.src = this.images[2];
+        // this.image.src = this.images[2];
+        console.log(this.image)
         this.hasJumped = true;
         let oldVal = this.y;
-        if(this.y < 500){
-            this.y = 150
+
+
+          if(this.y < 500){
+              this.y -= 120
+            }
+
+
             const jump = setInterval(() => {
+              this.image.src = this.images[2];
                 this.y += 5;
                 if(this.y >= oldVal){
                     this.y = oldVal
@@ -47,7 +54,7 @@ class Player {
                     clearInterval(jump)
                 }
             }, 20);
-        }
+
     };
 
     moveUpRight(){
@@ -101,7 +108,7 @@ class Player {
                     clearTimeout(timer)
                 }, 400);
             }
-        } 
+        }
         this.image.src = this.images[4];
         let hit = false;
         if(!this.reversed){
@@ -120,7 +127,7 @@ class Player {
                 if(this.count === 1){
                     player1.health += 5;
                     this.count++;
-                }   
+                }
             }
         }
     }
