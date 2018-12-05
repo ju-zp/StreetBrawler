@@ -1,9 +1,6 @@
 
 let context;
 
-// animate()
-// console.log(canvas)
-
 var start;
 let movement = 8;
 let player1;
@@ -11,7 +8,27 @@ let player2;
 const gameArea = new Game();
 let animate2;
 let player1Images = ["./assests/ken_street_fighter.png", "./assests/ken_streetfighter2.png"]
-let player2Images = ["assests/sagat/sagat1.png", "assests/sagat/sagat2.png", "assests/sagat/sagatJump.png"]
+let player2Images = ["./assests/sagat/sagat1.png", "./assests/sagat/sagat2.png", "./assests/sagat/sagatJump.png"]
+
+let canvas1 = document.createElement('canvas')
+canvas1.id = 'playerOne'
+canvas1.width = 200;
+canvas1.height = 20;
+document.querySelector('#health-bars').appendChild(canvas1);
+
+
+let canvas2 = document.createElement('canvas')
+canvas2.id = 'playerTwo'
+canvas2.width = 200;
+canvas2.height = 20;
+document.querySelector('#health-bars').appendChild(canvas2);
+
+
+let contextPlayerOne = canvas1.getContext('2d');
+let contextPlayerTwo = canvas2.getContext('2d');
+
+playerOneHealth();
+playerTwoHealth();
 
 window.addEventListener("load", function(e) {
     // var gp = navigator.getGamepads()[e.gamepad.index];
@@ -22,8 +39,9 @@ window.addEventListener("load", function(e) {
     player1 = new Player(60, 120, 200, 370, player1Images);
     animatePlayer(player1)
     player2 = new Player(60, 100, 600, 350, player2Images);
-
-    animatePlayer(player2)
+    animatePlayer(player2);
+    // const p1 = new PlayerOneHealth();
+    // const p2 = new PlayerTwoHealth();
     // animate2 = new Animate(player2);
     // animate2.static();
     gameLoop();
@@ -113,6 +131,45 @@ function player1collides(a, b, axis, movement){
         a.y + movement <= b.y + b.height &&
         a.y + movement + a.height >= b.y
     }
+}
+
+function fullscreen(){
+let el = document.querySelector('canvas');
+           if(el.webkitRequestFullScreen) {
+               el.webkitRequestFullScreen();
+           }
+          else {
+             el.mozRequestFullScreen();
+          }
+}
+
+function playerOneHealth() {
+
+    contextPlayerOne.clearRect(0, 0, window.innerWidth,window.innerHeight);
+    contextPlayerOne.fillStyle = 'rgba(155,155,0,1)';
+    contextPlayerOne.fillRect(0,0,window.innerWidth,window.innerHeight);
+
+}
+
+function playerOneDamage(){
+  let hitter = 50;
+  contextPlayerOne.fillStyle = 'rgba(155,0,0,0.5)';
+  contextPlayerOne.fillRect(0,0,hitter,window.innerHeight);
+}
+
+
+function playerTwoHealth() {
+
+    contextPlayerTwo.clearRect(0, 0, window.innerWidth,window.innerHeight);
+    contextPlayerTwo.fillStyle = 'rgba(155,155,0,1)';
+    contextPlayerTwo.fillRect(0,0,window.innerWidth,window.innerHeight);
+
+}
+
+function playerTwoDamage(){
+  let hitter = 50;
+  contextPlayerTwo.fillStyle = 'rgba(155,0,0,0.5)';
+  contextPlayerTwo.fillRect(0,0,hitter,window.innerHeight);
 }
 
 function updateGameArea() {
