@@ -1,4 +1,6 @@
 
+document.body.style.zoom = 1.25
+
 let context;
 
 // animate()
@@ -123,7 +125,7 @@ function player1collides(a, b, axis, movement){
 function playerOneHealth() {
     document.querySelector('#health-bars').appendChild(canvas1)
     contextPlayerOne.clearRect(0, 0, window.innerWidth,window.innerHeight);
-    contextPlayerOne.fillStyle = 'rgba(155,155,0,1)';
+    contextPlayerOne.fillStyle = 'rgb(244, 232, 66)';
     contextPlayerOne.fillRect(0,0,window.innerWidth,window.innerHeight);
 
 }
@@ -136,7 +138,7 @@ function playerOneDamage(dmg){
 function playerTwoHealth() {
     document.querySelector('#health-bars').appendChild(canvas2)
     contextPlayerTwo.clearRect(0, 0, window.innerWidth,window.innerHeight);
-    contextPlayerTwo.fillStyle = 'rgba(155,155,0,1)';
+    contextPlayerTwo.fillStyle = 'rgb(244, 232, 66)';
     contextPlayerTwo.fillRect(0,0,window.innerWidth,window.innerHeight);
 
 }
@@ -166,7 +168,7 @@ const createClock = () => {
   clockC.fillText(60, 5 , 30);
   document.querySelector('#clock').appendChild(clock)
 
-  let time = 60;
+  let time = 10;
 
   let timer = setInterval(function(){
   time--
@@ -185,7 +187,8 @@ const createClock = () => {
 
 const gameOver = () => {
     console.log('gameOver')
-    context.fillRect(0,0,window.innerWidth,window.innerHeight);
+
+
 }
 
 
