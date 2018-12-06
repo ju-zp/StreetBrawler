@@ -110,6 +110,7 @@ function player1collides(a, b, axis, movement){
 }
 
 function playerOneHealth() {
+
     document.querySelector('#health-bars').appendChild(canvas1)
     contextPlayerOne.clearRect(0, 0, window.innerWidth,window.innerHeight);
     contextPlayerOne.fillStyle = 'rgb(244, 232, 66)';
@@ -126,6 +127,7 @@ function playerOneDamage(dmg){
 
 
 function playerTwoHealth() {
+    
     document.querySelector('#health-bars').appendChild(canvas2)
     contextPlayerTwo.clearRect(0, 0, window.innerWidth,window.innerHeight);
     contextPlayerTwo.fillStyle = 'rgb(244, 232, 66)';

@@ -10,7 +10,10 @@ class Game {
     }
 
     setGameArea() {
+        
         document.body.removeChild(document.querySelector("#menu"));
+        document.querySelector("#health-bars").style = "visibility: visible;"
+        document.querySelector("#clock").style = "visibility: visible;"
         player1 = new Player(40, 85, 200, 370, reversedPlayer1Images, player1Images, false);
         player2 = new Player(40, 85, 600, 350, reversedPlayer2Images, player2Images, true)
         animatePlayer1();
@@ -57,8 +60,6 @@ class Game {
     }
 
     startGame() {
-        
-
         this.setGameArea();
         function gameLoop() {
             assignControllers();
@@ -74,6 +75,10 @@ class Game {
     }
    
     mainMenu(){
+        if(document.querySelector("#endGame")){
+            console.log("hello")
+            document.body.removeChild(document.querySelector("#endGame"));
+        }
         const div = document.createElement("div");
         div.innerHTML = "<h1 id='logo'>Street Brawler</h1>"
         div.id = "menu";
@@ -92,12 +97,11 @@ class Game {
 
         window.cancelAnimationFrame(start)
         clearInterval(this.interval)
+        document.querySelector("#health-bars").style = "visibility:hidden;"
+        const clock = document.querySelector("#clock")
+        clock.style = "visibility:hidden;"
 
-        
-        
-        document.body.removeChild(document.querySelector("#health-bars"));
-        document.body.removeChild(document.querySelector("#clock"))
-        // context.fillRect(0,0,window.innerWidth,window.innerHeight);
+        clock.removeChild(document.querySelector("#face"))
         this.gameForm();
         console.log("hello")
     }
@@ -110,21 +114,21 @@ class Game {
             winner = "Player 1"
         } 
         const div = document.createElement("div");
-        const form = document.createElement("form");
-        form.innerHTML = `<h1 id="logo">Winner: ${winner}</h1><div id="form"><label id="logo">Name:</label><input type="text" id="winner" name="winner"></div><br>`
+        div.id = "endGame"
+        div.innerHTML = `<h1 id="logo">Winner: ${winner}</h1><div id="form"><label id="logo">Name:</label><input type="text" id="winner" name="winner"></div><br>`
         const submit = document.createElement("button");
         submit.innerText = "Submit";
         submit.id = "submit"
         submit.addEventListener("click",(e) => {
+            const winner = document.querySelector("#winner").value
+            fetch('http://0.0.0.0:3001/submit', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify( {username: winner})
+            }).then(resp => resp.json())
             this.mainMenu();
         })
-        form.appendChild(submit);
-        div.appendChild(form);
-        // const header = document.createElement("h1");
-        div.id = "menu";
-        // header.innerText = "Game Over"
-
-        // div.appendChild(header);
+        div.appendChild(submit);
         document.body.append(div);
     }
 
