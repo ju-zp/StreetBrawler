@@ -9,10 +9,11 @@ let movement = 8;
 let connected = false;
 let player1;
 let player2;
+let gp;
+let gp2;
 let player1animation;
 let player2animation;
 const gameArea = new Game();
-let animate2;
 let player1Images = ["./assests/ken/normal/ken_street_fighter.png", "./assests/ken/normal/ken_streetfighter2.png", "./assests/ken/normal/ken_jump2.png", "./assests/ken/normal/kenDuck.png", "./assests/ken/normal/kenPunch.png", "./assests/ken/normal/kenKick.png"]
 let reversedPlayer1Images = ["./assests/ken/reverse/ken_street_fighter.png", "./assests/ken/reverse/ken_streetfighter2.png", "./assests/ken/reverse/ken_jump2.png", "./assests/ken/reverse/kenDuck.png", "./assests/ken/reverse/kenPunch.png", "./assests/ken/reverse/kenKick.png"]
 let reversedPlayer2Images = ["assests/sagat/reversed/sagat1.png", "assests/sagat/reversed/sagat2.png", "assests/sagat/reversed/sagatJump.png", "assests/sagat/reversed/sagatDuck.png", "assests/sagat/reversed/sagatPunch.png", "assests/sagat/reversed/sagatKick.png"]
@@ -63,57 +64,29 @@ clockC.fillText(time, 5 , 30);
 
 
 
-window.addEventListener("load", function(e) {
+window.addEventListener("gamepadconnected", function(e) {
     console.log(e)
     // var gp = navigator.getGamepads()[e.gamepad.index];
     // console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
     // gp.index, gp.id,
     // gp.buttons.length, gp.axes.length);
-
-    gameArea.start();
-    player1 = new Player(40, 85, 200, 370, reversedPlayer1Images, player1Images, false);
-    player2 = new Player(40, 85, 600, 350, reversedPlayer2Images, player2Images, true)
-    animatePlayer1;
-    animatePlayer2
-    // player1.animatePlayer();
-
-    // player2animation.animation();
-
-    gameLoop();
+    
+    // gameArea.setGameArea();
+    // gameArea.startGame();
   });
 
-function buttonPressed(b) {
-    if (typeof(b) == "object") {
-        return b.pressed;
-    }
-}
+//   gameArea.startGame();
 
-function gameLoop() {
-    let gp;
-    let gp2;
-    if(!connected){
-        var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-        if (!gamepads) {
-        return;
-        }
-        for(const gamepad of gamepads){
-            if(gamepad){
-                if(gamepad.id.charAt(0) === "X"){
-                    gp2 = gamepad;
-                } else if(gamepad.id.charAt(0) === "W")  {
-                    gp = gamepad;
-                }
-            }
-        }
-    }
 
-    playStationControls(gp);
-    xboxControls(gp2);
+gameArea.mainMenu();
 
-    start = requestAnimationFrame(gameLoop);
-}
 
-const animatePlayer1 = setInterval(() =>{
+
+
+
+function animatePlayer1() {
+
+ setInterval(() =>{
     player1.stage = !player1.stage;
     if(player1.stage){
         player1.image.src = player1.images[1];
@@ -121,8 +94,11 @@ const animatePlayer1 = setInterval(() =>{
         player1.image.src = player1.images[0];
     }
 }, 300);
+}
 
-const animatePlayer2 = setInterval(() =>{
+function animatePlayer2(){
+
+ setInterval(() =>{
     player2.stage = !player2.stage;
     if(player2.stage){
         player2.image.src = player2.images[1];
@@ -130,6 +106,7 @@ const animatePlayer2 = setInterval(() =>{
         player2.image.src = player2.images[0];
     }
 }, 300);
+}
 
 
 function player1collides(a, b, axis, movement){
@@ -186,12 +163,3 @@ function playerPosition(){
     }
 }
 
-function updateGameArea() {
-    // console.log("hello")
-    gameArea.clear();
-    player1.update();
-    playerPosition();
-    player2.update();
-    playerOneHealth(player1.health);
-    playerTwoHealth(player2.health);
-}

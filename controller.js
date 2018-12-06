@@ -1,8 +1,31 @@
+function buttonPressed(b) {
+    if (typeof(b) == "object") {
+        return b.pressed;
+    }
+}
+
+function assignControllers (){
+    if(!connected){
+        let gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+        if (!gamepads) {
+        return;
+        }
+        for(const gamepad of gamepads){
+            if(gamepad){
+                if(gamepad.id.charAt(0) === "X"){
+                    gp2 = gamepad;
+                } else if(gamepad.id.charAt(0) === "W")  {
+                    gp = gamepad;
+                }
+            }
+        }
+    }
+}
+
 const playStationControls = (gp) => {
     if (buttonPressed(gp.buttons[12])) {
         if(!player1collides(player1, player2, "y", -10)){
             if(!player1.hasJumped){
-                // clearInterval(player1.animatePlayer);
               player1.moveUp();
             }
         }
