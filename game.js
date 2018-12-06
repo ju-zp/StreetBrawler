@@ -4,25 +4,23 @@ class Game {
         this.canvas.width = 800;
         this.canvas.height = 500;
         this.context = this.canvas.getContext("2d");
-
+        this.ani;
         context = this.context;
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     }
 
     setGameArea() {
-        
         document.body.removeChild(document.querySelector("#menu"));
         document.querySelector("#health-bars").style = "visibility: visible;"
         document.querySelector("#clock").style = "visibility: visible;"
         player1 = new Player(40, 85, 200, 370, reversedPlayer1Images, player1Images, false);
         player2 = new Player(40, 85, 600, 350, reversedPlayer2Images, player2Images, true)
-        animatePlayer1();
-        animatePlayer2()
+        this.ani = animatePlayer1();
+        animatePlayer2();
         playerOneHealth();
         playerTwoHealth();
         this.getClock();
         this.interval = setInterval(this.updateGameArea, 24);
-        
     }
 
     getClock(){
@@ -63,21 +61,17 @@ class Game {
         this.setGameArea();
         function gameLoop() {
             assignControllers();
-        
             playStationControls(gp);
             xboxControls(gp2);
-
             start = requestAnimationFrame(gameLoop);
-
-          
         }
         gameLoop();
     }
    
     mainMenu(){
+        
         if(document.querySelector("#endGame")){
-            console.log("hello")
-            document.body.removeChild(document.querySelector("#endGame"));
+            document.body.removeChild(document.querySelector("#endGame"))
         }
         const div = document.createElement("div");
         div.innerHTML = "<h1 id='logo'>Street Brawler</h1>"
@@ -93,26 +87,29 @@ class Game {
     }
 
     gameOver() {
-        console.log('gameOver')
-
-        window.cancelAnimationFrame(start)
         clearInterval(this.interval)
+        window.cancelAnimationFrame(start)
         document.querySelector("#health-bars").style = "visibility:hidden;"
         const clock = document.querySelector("#clock")
         clock.style = "visibility:hidden;"
-
         clock.removeChild(document.querySelector("#face"))
         this.gameForm();
-        console.log("hello")
     }
 
     gameForm() {
         let winner;
         if(player1.health > player2.health){
             winner = "Player 2"
+            this.win(winner);
         } else if(player2.health > player1.health){
             winner = "Player 1"
-        } 
+            this.win(winner);
+        } else{
+            this.draw();
+        }
+    }
+
+    win(winner){
         const div = document.createElement("div");
         div.id = "endGame"
         div.innerHTML = `<h1 id="logo">Winner: ${winner}</h1><div id="form"><label id="logo">Name:</label><input type="text" id="winner" name="winner"></div><br>`
@@ -126,14 +123,28 @@ class Game {
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify( {username: winner})
             }).then(resp => resp.json())
+            location.reload();
+            this.mainMenu();
+        })
+        div.appendChild(submit);
+        document.body.append(div);
+
+    }
+    draw(){
+        const div = document.createElement("div");
+        div.id = "endGame";
+        div.innerHTML = '<h1 id="logo">Draw</h1>'
+        const submit = document.createElement("button");
+        submit.innerText = "Main Menu";
+        submit.id = "submit"
+        submit.addEventListener("click",(e) => {
+            location.reload();
             this.mainMenu();
         })
         div.appendChild(submit);
         document.body.append(div);
     }
-
-
-
+    
     clear() {
         this.context.clearRect(0,0,this.canvas.width, this.canvas.height);
     }
