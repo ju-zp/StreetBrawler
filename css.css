@@ -101,11 +101,14 @@ position: relative;
   z-index:2;
 }
 
-#gameOverForm {
-  background-color: crimson;
-  /* font-size: 80px; */
+#endGame {
+  border-radius: 25px;
+  background-image: linear-gradient(red, rgb(255,255,0,0.5));
+  padding: 20px; 
+  
+  height: 150px; 
   position:absolute; 
   top:150px;
-  left:350px; 
+  left:260px; 
   z-index:2;
 }
