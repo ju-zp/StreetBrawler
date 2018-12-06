@@ -5,8 +5,8 @@ let context;
 
 // animate()
 // console.log(canvas)
-
-var start;
+let stopGame;
+let start;
 let movement = 8;
 let connected = false;
 let player1;
@@ -119,6 +119,9 @@ function playerOneHealth() {
 
 function playerOneDamage(dmg){
   contextPlayerOne.clearRect(0, 0, dmg,window.innerHeight);
+  if(player1.health >= 200){
+      gameArea.gameOver();
+  }
 }
 
 
@@ -132,6 +135,9 @@ function playerTwoHealth() {
 
 function playerTwoDamage(dmg){
   contextPlayerTwo.clearRect(0, 0, dmg,window.innerHeight);
+  if(player2.health >= 200){
+    gameArea.gameOver();
+}
 }
 
 function playerPosition(){

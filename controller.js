@@ -23,6 +23,7 @@ function assignControllers (){
 }
 
 const playStationControls = (gp) => {
+    // console.log("hello")
     if (buttonPressed(gp.buttons[12])) {
         if(!player1collides(player1, player2, "y", -10)){
             if(!player1.hasJumped){

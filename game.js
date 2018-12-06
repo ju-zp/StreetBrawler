@@ -4,13 +4,13 @@ class Game {
         this.canvas.width = 800;
         this.canvas.height = 500;
         this.context = this.canvas.getContext("2d");
+
         context = this.context;
-        // this.start;
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     }
 
     setGameArea() {
-        document.body.removeChild(document.querySelector("#start"));
+        document.body.removeChild(document.querySelector("#menu"));
         player1 = new Player(40, 85, 200, 370, reversedPlayer1Images, player1Images, false);
         player2 = new Player(40, 85, 600, 350, reversedPlayer2Images, player2Images, true)
         animatePlayer1();
@@ -33,7 +33,7 @@ class Game {
         clockC.fillText(60, 5 , 30);
         document.querySelector('#clock').appendChild(clock)
 
-        let time = 10;
+        let time = 60;
 
         let timer = setInterval(function(){
             time--
@@ -57,40 +57,75 @@ class Game {
     }
 
     startGame() {
+        
+
         this.setGameArea();
         function gameLoop() {
-
             assignControllers();
         
             playStationControls(gp);
             xboxControls(gp2);
-        
-           start = requestAnimationFrame(gameLoop);
+
+            start = requestAnimationFrame(gameLoop);
+
+          
         }
         gameLoop();
     }
    
     mainMenu(){
-        this.context.font = "30px Arial";
-        this.context.fillStyle = "blue";
-        this.context.textAlign = "center";
-        this.context.strokeText("Street Brawler",this.canvas.width/2, this.canvas.height/2 -100);
-        let btn = document.createElement("button");
+        const div = document.createElement("div");
+        div.innerHTML = "<h1 id='logo'>Street Brawler</h1>"
+        div.id = "menu";
+        const btn = document.createElement("button");
         btn.innerText = "Start Game";
         btn.id = "start"
         btn.addEventListener("click", () =>{
             this.startGame();
         })
-        document.body.append(btn);
+        div.appendChild(btn);
+        document.body.append(div);
     }
 
     gameOver() {
         console.log('gameOver')
-        window.cancelAnimationFrame(this.start)
+
+        window.cancelAnimationFrame(start)
+        clearInterval(this.interval)
+
+        
+        
         document.body.removeChild(document.querySelector("#health-bars"));
         document.body.removeChild(document.querySelector("#clock"))
-        context.fillRect(0,0,window.innerWidth,window.innerHeight);
+        // context.fillRect(0,0,window.innerWidth,window.innerHeight);
+        this.gameForm();
         console.log("hello")
+    }
+
+    gameForm() {
+        let winner;
+        if(player1.health > player2.health){
+            winner = "Player 2"
+        } else if(player2.health > player1.health){
+            winner = "Player 1"
+        } 
+        const div = document.createElement("div");
+        const form = document.createElement("form");
+        form.innerHTML = `<h1 id="logo">Winner: ${winner}</h1><div id="form"><label id="logo">Name:</label><input type="text" id="winner" name="winner"></div><br>`
+        const submit = document.createElement("button");
+        submit.innerText = "Submit";
+        submit.id = "submit"
+        submit.addEventListener("click",(e) => {
+            this.mainMenu();
+        })
+        form.appendChild(submit);
+        div.appendChild(form);
+        // const header = document.createElement("h1");
+        div.id = "menu";
+        // header.innerText = "Game Over"
+
+        // div.appendChild(header);
+        document.body.append(div);
     }
 
 
