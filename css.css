@@ -9,6 +9,7 @@ canvas {
 
 
 #health-bars{
+position: relative;
   margin-top: -50%;
   margin-left: 5%;
   z-index: 1;
