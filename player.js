@@ -87,6 +87,11 @@ class Player {
     };
 
     punch(player){
+
+
+      this.punchSound = new Audio('/sound_files/08. Ken Punch.mp3');
+      this.punchSound.play();
+
         if (this.state === 'PUNCHING') return false;
         this.state = 'PUNCHING'
         if(this.reversed){
@@ -122,6 +127,8 @@ class Player {
     }
 
     kick(player){
+      this.punchSound = new Audio('/sound_files/08. Ken Punch.mp3');
+      this.punchSound.play();
         if(this.state === 'KICKING') return false;
         this.state = 'KICKING'
         if(this.reversed){

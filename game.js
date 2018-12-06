@@ -21,6 +21,7 @@ class Game {
         playerTwoHealth();
         this.getClock();
         this.interval = setInterval(this.updateGameArea, 24);
+
     }
 
     getClock(){
@@ -58,16 +59,19 @@ class Game {
     }
 
     startGame() {
+
         this.setGameArea();
         function gameLoop() {
             assignControllers();
+
             playStationControls(gp);
             xboxControls(gp2);
             start = requestAnimationFrame(gameLoop);
+
         }
         gameLoop();
     }
-   
+
     mainMenu(){
         
         if(document.querySelector("#endGame")){
@@ -80,18 +84,29 @@ class Game {
         btn.innerText = "Start Game";
         btn.id = "start"
         btn.addEventListener("click", () =>{
-            this.startGame();
+          this.gameSounds = new Audio('/sound_files/12. Chun-Li Stage.mp3');
+          this.gameSounds.play();
+          this.startGame();
         })
         div.appendChild(btn);
         document.body.append(div);
     }
 
     gameOver() {
+
+
+        console.log('gameOver')
+
+              this.punchSound = new Audio('/sound_files/08. Ken Dying.mp3');
+              this.punchSound.play();
+        this.gameSounds.pause();
+
         clearInterval(this.interval)
         window.cancelAnimationFrame(start)
         document.querySelector("#health-bars").style = "visibility:hidden;"
         const clock = document.querySelector("#clock")
         clock.style = "visibility:hidden;"
+
         clock.removeChild(document.querySelector("#face"))
         this.gameForm();
     }
@@ -103,6 +118,7 @@ class Game {
             this.win(winner);
         } else if(player2.health > player1.health){
             winner = "Player 1"
+
             this.win(winner);
         } else{
             this.draw();
@@ -110,6 +126,9 @@ class Game {
     }
 
     win(winner){
+
+        
+
         const div = document.createElement("div");
         div.id = "endGame"
         div.innerHTML = `<h1 id="logo">Winner: ${winner}</h1><div id="form"><label id="logo">Name:</label><input type="text" id="winner" name="winner"></div><br>`
