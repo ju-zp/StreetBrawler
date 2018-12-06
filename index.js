@@ -61,8 +61,7 @@ clockC.fillText(time, 5 , 30);
 
 
 
-playerOneHealth();
-playerTwoHealth();
+
 
 window.addEventListener("load", function(e) {
     console.log(e)
@@ -110,7 +109,7 @@ function gameLoop() {
 
     playStationControls(gp);
     xboxControls(gp2);
-    
+
     start = requestAnimationFrame(gameLoop);
 }
 
@@ -193,4 +192,6 @@ function updateGameArea() {
     player1.update();
     playerPosition();
     player2.update();
+    playerOneHealth(player1.health);
+    playerTwoHealth(player2.health);
 }
