@@ -20,6 +20,7 @@ let reversedPlayer2Images = ["assests/sagat/reversed/sagat1.png", "assests/sagat
 let player2Images = ["assests/sagat/normal/sagat1.png", "assests/sagat/normal/sagat2.png", "assests/sagat/normal/sagatJump.png", "assests/sagat/normal/sagatDuck.png", "assests/sagat/normal/sagatPunch.png", "assests/sagat/normal/sagatKick.png"]
 
 
+
 let canvas1 = document.createElement('canvas')
 canvas1.id = 'playerOne'
 canvas1.width = 200
@@ -33,37 +34,6 @@ let contextPlayerOne = canvas1.getContext('2d');
 let contextPlayerTwo = canvas2.getContext('2d');
 
 
-
-
-
-let clock = document.createElement('canvas')
-clock.id = 'face'
-clock.width = 40
-clock.height = 40
-
-document.querySelector('#clock').appendChild(clock)
-let clockC = clock.getContext('2d');
-let time = 60
-clockC.font = "30px Arial";
-clockC.fillText(time, 5 , 30);
-
-
-
-setInterval(function(){
-time--
-if (time >= 0){
-clockC.clearRect(0, 0, 252, 144);
-clockC.fillText(time, 5 , 30);
-}else{
-  return;
-}
-}, 1000);
-
-
-
-
-
-
 window.addEventListener("gamepadconnected", function(e) {
     console.log(e)
     // var gp = navigator.getGamepads()[e.gamepad.index];
@@ -73,12 +43,26 @@ window.addEventListener("gamepadconnected", function(e) {
     
     // gameArea.setGameArea();
     // gameArea.startGame();
+  
+    // player1 = new Player(40, 85, 200, 370, reversedPlayer1Images, player1Images, false);
+    // player2 = new Player(40, 85, 600, 350, reversedPlayer2Images, player2Images, true)
+    // animatePlayer1;
+    // animatePlayer2
+    // playerOneHealth();
+    // playerTwoHealth();
+    
   });
+
 
 //   gameArea.startGame();
 
-
+   
 gameArea.mainMenu();
+    // player1.animatePlayer();
+
+
+
+
 
 
 
@@ -123,11 +107,6 @@ function player1collides(a, b, axis, movement){
     }
 }
 
-
-
-
-
-
 function playerOneHealth() {
     document.querySelector('#health-bars').appendChild(canvas1)
     contextPlayerOne.clearRect(0, 0, window.innerWidth,window.innerHeight);
@@ -142,7 +121,7 @@ function playerOneDamage(dmg){
 
 
 function playerTwoHealth() {
-  document.querySelector('#health-bars').appendChild(canvas2)
+    document.querySelector('#health-bars').appendChild(canvas2)
     contextPlayerTwo.clearRect(0, 0, window.innerWidth,window.innerHeight);
     contextPlayerTwo.fillStyle = 'rgba(155,155,0,1)';
     contextPlayerTwo.fillRect(0,0,window.innerWidth,window.innerHeight);
@@ -162,4 +141,5 @@ function playerPosition(){
         player1.reversed = true;
     }
 }
+
 
