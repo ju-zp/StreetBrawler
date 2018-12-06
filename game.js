@@ -19,7 +19,7 @@ class Game {
         playerTwoHealth();
         this.getClock();
         this.interval = setInterval(this.updateGameArea, 24);
-        
+
     }
 
     getClock(){
@@ -57,22 +57,22 @@ class Game {
     }
 
     startGame() {
-        
+
 
         this.setGameArea();
         function gameLoop() {
             assignControllers();
-        
+
             playStationControls(gp);
             xboxControls(gp2);
 
             start = requestAnimationFrame(gameLoop);
 
-          
+
         }
         gameLoop();
     }
-   
+
     mainMenu(){
         const div = document.createElement("div");
         div.innerHTML = "<h1 id='logo'>Street Brawler</h1>"
@@ -81,7 +81,9 @@ class Game {
         btn.innerText = "Start Game";
         btn.id = "start"
         btn.addEventListener("click", () =>{
-            this.startGame();
+          this.gameSounds = new Audio('/sound_files/12. Chun-Li Stage.mp3');
+          this.gameSounds.play();
+          this.startGame();
         })
         div.appendChild(btn);
         document.body.append(div);
@@ -90,11 +92,14 @@ class Game {
     gameOver() {
         console.log('gameOver')
 
+              this.punchSound = new Audio('/sound_files/08. Ken Dying.mp3');
+              this.punchSound.play();
+        this.gameSounds.pause();
         window.cancelAnimationFrame(start)
         clearInterval(this.interval)
 
-        
-        
+
+
         document.body.removeChild(document.querySelector("#health-bars"));
         document.body.removeChild(document.querySelector("#clock"))
         // context.fillRect(0,0,window.innerWidth,window.innerHeight);
@@ -108,7 +113,7 @@ class Game {
             winner = "Player 2"
         } else if(player2.health > player1.health){
             winner = "Player 1"
-        } 
+        }
         const div = document.createElement("div");
         const form = document.createElement("form");
         form.innerHTML = `<h1 id="logo">Winner: ${winner}</h1><div id="form"><label id="logo">Name:</label><input type="text" id="winner" name="winner"></div><br>`
