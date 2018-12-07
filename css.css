@@ -73,11 +73,11 @@ position: relative;
   color: rgb(6, 73, 136);
 }
 
-#leaderboard {
+#leaderboardBtn {
   border-radius: 25px;
   background-color: rgba(146, 15, 15, 0.295); /* Green */
   height:20px; 
-  width:100px; 
+  
   margin: -20px -50px; 
   border-color: rgba(0, 0, 0, 0.37);
   box-shadow: 2px 2px 8px #141313;
@@ -86,6 +86,26 @@ position: relative;
   left:50%;
   font-size: 16px;
   color: rgb(6, 73, 136);
+}
+
+#leaderBoard {
+  border-radius: 25px;
+  background-image: linear-gradient(red, rgb(255,255,0,0.5));
+  padding: 20px; 
+  width: 230px;
+  position:absolute; 
+  top:150px;
+  left:260px; 
+  z-index:2;
+}
+
+#leaders {
+  margin-left: 20px;
+  letter-spacing: 1px;
+    text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+             0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+             0 0 40px #A5F1FF;
+  position:relative;
 }
 
 #start {

@@ -75,15 +75,17 @@ class Game {
     mainMenu(){
         if(document.querySelector("#endGame")){
             document.body.removeChild(document.querySelector("#endGame"))
+        } else if(document.querySelector("#leaderBoard")){
+            document.body.removeChild(document.querySelector("#leaderBoard"))
         }
         const div = document.createElement("div");
         div.innerHTML = "<h1 id='logo'>Street Brawler</h1>"
         div.id = "menu";
         const leaderBoard = document.createElement("button");
         leaderBoard.innerText = "Leaderboard";
-        leaderBoard.id = "leaderboard"
+        leaderBoard.id = "leaderboardBtn"
         leaderBoard.addEventListener("click", () =>{
-            console.log("hello");
+            this.leaderBoard();
         })
         const btn = document.createElement("button");
         btn.innerText = "Start Game";
@@ -100,12 +102,43 @@ class Game {
         document.body.append(div);
     }
 
-    gameOver() {
-        console.log('gameOver')
-              this.punchSound = new Audio('sound_files/08. Ken Dying.mp3');
-              this.punchSound.play();
-        this.gameSounds.pause();
+    leaderBoard(){
+        if(document.querySelector("#menu")){
+            document.body.removeChild(document.querySelector("#menu"))
+        } else if(document.querySelector("#endGame")){
+            document.body.removeChild(document.querySelector("#endGame"))
+        }
+        const div = document.createElement("div");
+        div.innerHTML = "<h1 id='logo'>Leader Board</h1>"
+        div.id = "leaderBoard";
+        const list = document.createElement("ol");
+        list.id = "leaders"
+        sortUsers().then(users => {
+            for(let i = 0; i < 10; i++){
+                const liEl = document.createElement("li");
+                if(users[i]){
+                    liEl.innerHTML = `${users[i].username} Wins: ${users[i].win_count}`;
+                } else {
+                    liEl.innerText = "--- Wins: 0";
+                }
+                list.appendChild(liEl);
+            }
+        })
+        const btn = document.createElement("button");
+        btn.id = "start"
+        btn.innerText = "Main Menu"
+        btn.addEventListener("click", () => {
+            location.reload();
+        })
+        div.appendChild(list);
+        div.appendChild(btn)
+        document.body.append(div)
+    }
 
+    gameOver() {
+        this.punchSound = new Audio('sound_files/08. Ken Dying.mp3');
+        this.punchSound.play();
+        this.gameSounds.pause();
         clearInterval(this.interval)
         window.cancelAnimationFrame(start)
         document.querySelector("#health-bars").style = "visibility:hidden;"
@@ -144,9 +177,7 @@ class Game {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify( {username: winner})
-            }).then(resp => resp.json())
-            location.reload();
-            this.mainMenu();
+            }).then(this.leaderBoard);
         })
         div.appendChild(submit);
         document.body.append(div);
@@ -157,11 +188,10 @@ class Game {
         div.id = "endGame";
         div.innerHTML = '<h1 id="logo">Draw</h1>'
         const submit = document.createElement("button");
-        submit.innerText = "Main Menu";
-        submit.id = "submit"
+        submit.innerText = "Leader Board";
+        submit.id = "leaderboardBtn"
         submit.addEventListener("click",(e) => {
-            location.reload();
-            this.mainMenu();
+            this.leaderBoard();
         })
         div.appendChild(submit);
         document.body.append(div);
