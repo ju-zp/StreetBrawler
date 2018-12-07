@@ -73,6 +73,21 @@ position: relative;
   color: rgb(6, 73, 136);
 }
 
+#leaderboard {
+  border-radius: 25px;
+  background-color: rgba(146, 15, 15, 0.295); /* Green */
+  height:20px; 
+  width:100px; 
+  margin: -20px -50px; 
+  border-color: rgba(0, 0, 0, 0.37);
+  box-shadow: 2px 2px 8px #141313;
+  position:relative;
+  top:50%; 
+  left:50%;
+  font-size: 16px;
+  color: rgb(6, 73, 136);
+}
+
 #start {
   border-radius: 25px;
   background-color: rgba(146, 15, 15, 0.295); /* Green */
@@ -81,7 +96,6 @@ position: relative;
   margin: -20px -50px; 
   border-color: rgba(0, 0, 0, 0.37);
   box-shadow: 2px 2px 8px #141313;
-  color: rgb(13, 181, 211);
   position:relative;
   top:50%; 
   left:50%;
@@ -105,7 +119,7 @@ position: relative;
   background-image: linear-gradient(red, rgb(255,255,0,0.5));
   padding: 20px; 
   height: 150px; 
-  width: 250px;
+  width: 270px;
   position: absolute; 
   top:150px;
   left:260px; 

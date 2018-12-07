@@ -52,7 +52,7 @@ class Game {
     updateGameArea() {
         gameArea.clear();
         player1.update();
-        this.playerPosition();
+        playerPosition();
         player2.update();
         playerOneDamage(player1.health);
         playerTwoDamage(player2.health);
@@ -73,31 +73,36 @@ class Game {
     }
 
     mainMenu(){
-        
         if(document.querySelector("#endGame")){
             document.body.removeChild(document.querySelector("#endGame"))
         }
         const div = document.createElement("div");
         div.innerHTML = "<h1 id='logo'>Street Brawler</h1>"
         div.id = "menu";
+        const leaderBoard = document.createElement("button");
+        leaderBoard.innerText = "Leaderboard";
+        leaderBoard.id = "leaderboard"
+        leaderBoard.addEventListener("click", () =>{
+            console.log("hello");
+        })
         const btn = document.createElement("button");
         btn.innerText = "Start Game";
         btn.id = "start"
         btn.addEventListener("click", () =>{
-          this.gameSounds = new Audio('/sound_files/12. Chun-Li Stage.mp3');
+          this.gameSounds = new Audio('sound_files/12. Chun-Li Stage.mp3');
           this.gameSounds.play();
           this.startGame();
         })
+        div.appendChild(leaderBoard);
+        div.appendChild(document.createElement("br"))
+        div.appendChild(document.createElement("br"))
         div.appendChild(btn);
         document.body.append(div);
     }
 
     gameOver() {
-
-
         console.log('gameOver')
-
-              this.punchSound = new Audio('/sound_files/08. Ken Dying.mp3');
+              this.punchSound = new Audio('sound_files/08. Ken Dying.mp3');
               this.punchSound.play();
         this.gameSounds.pause();
 
@@ -106,8 +111,9 @@ class Game {
         document.querySelector("#health-bars").style = "visibility:hidden;"
         const clock = document.querySelector("#clock")
         clock.style = "visibility:hidden;"
-
-        clock.removeChild(document.querySelector("#face"))
+        if(document.querySelector("#face")){
+            clock.removeChild(document.querySelector("#face"))
+        }
         this.gameForm();
     }
 
@@ -126,9 +132,6 @@ class Game {
     }
 
     win(winner){
-
-        
-
         const div = document.createElement("div");
         div.id = "endGame"
         div.innerHTML = `<h1 id="logo">Winner: ${winner}</h1><div id="form"><label id="logo">Name:</label><input type="text" id="winner" name="winner"></div><br>`

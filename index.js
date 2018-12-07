@@ -152,4 +152,17 @@ function playerPosition(){
     }
 }
 
+function fetchUsers(){
+    return fetch('http://0.0.0.0:3001/users').then(resp => resp.json())
+}
+
+function sortUsers(){
+    return fetchUsers().then(users => users.sort(sortByWins))
+}
+
+function sortByWins(a,b){
+        return b.win_count - a.win_count
+   
+}
+
 

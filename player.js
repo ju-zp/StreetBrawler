@@ -5,6 +5,7 @@ class Player {
         this.height = height;
         this.x = x;
         this.y = y ;
+        this.oldY = y;
         this.hasJumped = false;
         this.normalImages = images
         this.images = images;
@@ -30,27 +31,20 @@ class Player {
     };
 
     moveUp(){
-        // this.image.src = this.images[2];
         console.log(this.image)
         this.hasJumped = true;
-        let oldVal = this.y;
-
-
           if(this.y < 500){
-              this.y -= 200
+              this.y -= 150
             }
-
-
             const jump = setInterval(() => {
               this.image.src = this.images[2];
                 this.y += 5;
-                if(this.y >= oldVal){
-                    this.y = oldVal
+                if(this.y >= this.oldY){
+                    this.y = this.oldY
                     this.hasJumped = false;
                     clearInterval(jump)
                 }
             }, 20);
-
     };
 
     moveUpRight(){
@@ -71,15 +65,16 @@ class Player {
 
     moveDown(){
         this.image.src = this.images[3];
-        const oldVal = this.y;
         this.y = this.y + (this.height/2)
         setTimeout(()=>{
-            this.y = oldVal;
+            this.y = this.oldY;
         }, 200);
     };
 
     moveLeft(){
-        this.x -= movement;
+       
+            this.x -= movement;
+
     };
 
     moveRight(){
@@ -87,11 +82,8 @@ class Player {
     };
 
     punch(player){
-
-
-      this.punchSound = new Audio('/sound_files/08. Ken Punch.mp3');
+      this.punchSound = new Audio('sound_files/08. Ken Punch.mp3');
       this.punchSound.play();
-
         if (this.state === 'PUNCHING') return false;
         this.state = 'PUNCHING'
         if(this.reversed){
@@ -127,7 +119,7 @@ class Player {
     }
 
     kick(player){
-      this.punchSound = new Audio('/sound_files/08. Ken Punch.mp3');
+      this.punchSound = new Audio('sound_files/08. Ken Punch.mp3');
       this.punchSound.play();
         if(this.state === 'KICKING') return false;
         this.state = 'KICKING'
@@ -151,7 +143,13 @@ class Player {
             }
         } else {
             this.image.src = this.images[5];
-            const reach = this.x;
+            let reach;
+            if(this.oldY === 370){
+                reach = this.x - 20;
+            } else{
+               reach = this.x ;
+            }
+        
             if(reach <= player.x + player.width && !hit){
                 hit = true;
                 if(this.count === 1){
