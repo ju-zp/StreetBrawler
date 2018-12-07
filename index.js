@@ -3,8 +3,6 @@ document.body.style.zoom = 1.25
 
 let context;
 
-// animate()
-// console.log(canvas)
 let stopGame;
 let start;
 let movement = 6;
@@ -13,13 +11,11 @@ let player1;
 let player2;
 let gp;
 let gp2;
-let player1animation;
-let player2animation;
 const gameArea = new Game();
-let player1Images = ["./assests/ken/normal/ken_street_fighter.png", "./assests/ken/normal/ken_streetfighter2.png", "./assests/ken/normal/ken_jump2.png", "./assests/ken/normal/kenDuck.png", "./assests/ken/normal/kenPunch.png", "./assests/ken/normal/kenKick.png"]
-let reversedPlayer1Images = ["./assests/ken/reverse/ken_street_fighter.png", "./assests/ken/reverse/ken_streetfighter2.png", "./assests/ken/reverse/ken_jump2.png", "./assests/ken/reverse/kenDuck.png", "./assests/ken/reverse/kenPunch.png", "./assests/ken/reverse/kenKick.png"]
-let reversedPlayer2Images = ["assests/sagat/reversed/sagat1.png", "assests/sagat/reversed/sagat2.png", "assests/sagat/reversed/sagatJump.png", "assests/sagat/reversed/sagatDuck.png", "assests/sagat/reversed/sagatPunch.png", "assests/sagat/reversed/sagatKick.png"]
-let player2Images = ["assests/sagat/normal/sagat1.png", "assests/sagat/normal/sagat2.png", "assests/sagat/normal/sagatJump.png", "assests/sagat/normal/sagatDuck.png", "assests/sagat/normal/sagatPunch.png", "assests/sagat/normal/sagatKick.png"]
+let player1Images = ["./assests/ken/normal/ken_street_fighter.png", "./assests/ken/normal/ken_streetfighter2.png", "./assests/ken/normal/ken_jump2.png", "./assests/ken/normal/kenDuck.png", "./assests/ken/normal/kenPunch.png", "./assests/ken/normal/kenKick.png", "./assests/ken/normal/kenHit.png"]
+let reversedPlayer1Images = ["./assests/ken/reverse/ken_street_fighter.png", "./assests/ken/reverse/ken_streetfighter2.png", "./assests/ken/reverse/ken_jump2.png", "./assests/ken/reverse/kenDuck.png", "./assests/ken/reverse/kenPunch.png", "./assests/ken/reverse/kenKick.png", "./assests/ken/reverse/kenHit.png"]
+let reversedPlayer2Images = ["assests/sagat/reversed/sagat1.png", "assests/sagat/reversed/sagat2.png", "assests/sagat/reversed/sagatJump.png", "assests/sagat/reversed/sagatDuck.png", "assests/sagat/reversed/sagatPunch.png", "assests/sagat/reversed/sagatKick.png", "assests/sagat/reversed/sagatHit.png"]
+let player2Images = ["assests/sagat/normal/sagat1.png", "assests/sagat/normal/sagat2.png", "assests/sagat/normal/sagatJump.png", "assests/sagat/normal/sagatDuck.png", "assests/sagat/normal/sagatPunch.png", "assests/sagat/normal/sagatKick.png", "assests/sagat/normal/sagatHit.png"]
 
 
 
@@ -45,27 +41,25 @@ gameArea.mainMenu();
     
 
 function animatePlayer1() {
-
- setInterval(() =>{
-    player1.stage = !player1.stage;
-    if(player1.stage){
-        player1.image.src = player1.images[1];
-    } else {
-        player1.image.src = player1.images[0];
-    }
-}, 300);
+    setInterval(() =>{
+        player1.stage = !player1.stage;
+        if(player1.stage){
+            player1.image.src = player1.images[1];
+        } else {
+            player1.image.src = player1.images[0];
+        }
+    }, 300);
 }
 
 function animatePlayer2(){
-
- setInterval(() =>{
-    player2.stage = !player2.stage;
-    if(player2.stage){
-        player2.image.src = player2.images[1];
-    } else {
-        player2.image.src = player2.images[0];
-    }
-}, 300);
+    setInterval(() =>{
+        player2.stage = !player2.stage;
+        if(player2.stage){
+            player2.image.src = player2.images[1];
+        } else {
+            player2.image.src = player2.images[0];
+        }
+    }, 300);
 }
 
 

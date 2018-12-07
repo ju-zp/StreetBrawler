@@ -31,7 +31,6 @@ class Player {
     };
 
     moveUp(){
-        console.log(this.image)
         this.hasJumped = true;
           if(this.y < 500){
               this.y -= 170
@@ -72,9 +71,7 @@ class Player {
     };
 
     moveLeft(){
-       
-            this.x -= movement;
-
+        this.x -= movement;
     };
 
     moveRight(){
@@ -101,6 +98,12 @@ class Player {
                 hit = true
                 if(this.count === 0){
                     player.health += 5;
+                    player.image.src = player.images[6]
+                    if(player.x + 50 >= 750){
+                        player.x = 750;
+                    } else {
+                        player.x += 50;
+                    }
                     this.count++;
                 }
             }
@@ -111,6 +114,12 @@ class Player {
                 hit = true
                 if(this.count === 1){
                     player.health += 5;
+                    player.image.src = player.images[6]
+                    if(player.x - 50 < 0){
+                        player.x = 0;
+                    } else {
+                        player.x -= 50;
+                    }
                     this.count++;
                 }
             }
@@ -138,6 +147,12 @@ class Player {
                 hit = true
                 if(this.count === 0){
                     player.health += 10;
+                    player.image.src = player.images[6]
+                    if(player.x + 50 >= 750){
+                        player.x = 750;
+                    } else {
+                        player.x += 50;
+                    }
                     this.count++;
                 }
             }
@@ -154,6 +169,12 @@ class Player {
                 hit = true;
                 if(this.count === 1){
                     player.health += 10;
+                    player.image.src = player.images[6]
+                    if(player.x - 50 < 0){
+                        player.x = 0;
+                    } else {
+                        player.x -= 50;
+                    }
                     this.count++;
                 }
             }

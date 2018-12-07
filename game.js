@@ -13,9 +13,9 @@ class Game {
         document.body.removeChild(document.querySelector("#menu"));
         document.querySelector("#health-bars").style = "visibility: visible;"
         document.querySelector("#clock").style = "visibility: visible;"
-        player1 = new Player(40, 85, 200, 370, reversedPlayer1Images, player1Images, false);
+        player1 = new Player(40, 85, 200, 370, reversedPlayer1Images, player1Images, true);
         player2 = new Player(40, 85, 600, 350, reversedPlayer2Images, player2Images, true)
-        this.ani = animatePlayer1();
+        animatePlayer1();
         animatePlayer2();
         playerOneHealth();
         playerTwoHealth();
