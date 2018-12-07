@@ -7,7 +7,7 @@ let context;
 // console.log(canvas)
 let stopGame;
 let start;
-let movement = 8;
+let movement = 6;
 let connected = false;
 let player1;
 let player2;
@@ -37,38 +37,12 @@ let contextPlayerTwo = canvas2.getContext('2d');
 
 
 window.addEventListener("gamepadconnected", function(e) {
-    console.log(e)
-    // var gp = navigator.getGamepads()[e.gamepad.index];
-    // console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
-    // gp.index, gp.id,
-    // gp.buttons.length, gp.axes.length);
-    
-    // gameArea.setGameArea();
-    // gameArea.startGame();
-  
-    // player1 = new Player(40, 85, 200, 370, reversedPlayer1Images, player1Images, false);
-    // player2 = new Player(40, 85, 600, 350, reversedPlayer2Images, player2Images, true)
-    // animatePlayer1;
-    // animatePlayer2
-    // playerOneHealth();
-    // playerTwoHealth();
-    
+    console.log(e)  
   });
-
-
-//   gameArea.startGame();
 
    
 gameArea.mainMenu();
-    // player1.animatePlayer();
-
-
-
-
-
-
-
-
+    
 
 function animatePlayer1() {
 
@@ -110,18 +84,16 @@ function player1collides(a, b, axis, movement){
 }
 
 function playerOneHealth() {
-
     document.querySelector('#health-bars').appendChild(canvas1)
     contextPlayerOne.clearRect(0, 0, window.innerWidth,window.innerHeight);
     contextPlayerOne.fillStyle = 'rgb(244, 232, 66)';
     contextPlayerOne.fillRect(0,0,window.innerWidth,window.innerHeight);
-
 }
 
 function playerOneDamage(dmg){
   contextPlayerOne.clearRect(0, 0, dmg,window.innerHeight);
   if(player1.health >= 200){
-      gameArea.gameOver();
+    gameArea.gameOver(); 
   }
 }
 

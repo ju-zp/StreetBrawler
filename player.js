@@ -34,7 +34,7 @@ class Player {
         console.log(this.image)
         this.hasJumped = true;
           if(this.y < 500){
-              this.y -= 150
+              this.y -= 170
             }
             const jump = setInterval(() => {
               this.image.src = this.images[2];
