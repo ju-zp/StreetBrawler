@@ -8,6 +8,8 @@ view the leaderboard from the main menu. This contains information of users that
 have won. After starting a game a user can play against a friend. The X and O buttons are the action controls for PS4, and the 
 directional pad controls movement. After a game has finished the player with the highest health wins and can record their score.
 
+### [Video demo](https://youtu.be/2Qx8OMBL8uM)
+
 ![alt text](https://raw.github.com/ju-zp/StreetBrawler/blob/master/Client/assests/screenshots/mainMenu.png main menu)
 
 The project uses custom animations on the characters and when attack actions are fired, sound is also generated. This project was
