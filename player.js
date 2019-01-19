@@ -129,6 +129,7 @@ class Player {
 
     kick(player){
       this.punchSound = new Audio('sound_files/08. Ken Punch.mp3');
+      console.log("hello")
       this.punchSound.play();
         if(this.state === 'KICKING') return false;
         this.state = 'KICKING'
