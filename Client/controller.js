@@ -7,18 +7,25 @@ function buttonPressed(b) {
 function assignControllers (){
     if(!connected){
         let gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+        // console.log(gamepad)
         if (!gamepads) {
         return;
         }
-        for(const gamepad of gamepads){
-            if(gamepad){
-                if(gamepad.id.charAt(0) === "X"){
-                    gp2 = gamepad;
-                } else if(gamepad.id.charAt(0) === "W")  {
-                    gp = gamepad;
-                }
-            }
-        }
+        gp = gamepads[0]
+        gp2 = gamepads[1]
+        
+        // for(const gamepad of gamepads){
+        //     if(gamepad){
+        //         if(gamepad.id.charAt(0) === "X"){
+                    
+                    
+        //         } else if(gamepad.id.charAt(0) === "W")  {
+        //             console.log(gamepad)
+        //             gp = gamepad;
+        //             gp2 = gamepad;
+        //         }
+        //     }
+        // }
     }
 }
 
@@ -80,23 +87,23 @@ const playStationControls = (gp) => {
 }
 
 const xboxControls = (gp) => {
-    if (buttonPressed(gp.buttons[11])) {
+    if (buttonPressed(gp.buttons[12])) {
         if(!player1collides(player2, player1, "y", -10)){
             if(!player2.hasJumped){
                 clearInterval(player2.animatePlayer);
                 player2.moveUp();
             }
         }
-    } else if (buttonPressed(gp.buttons[13]) && player2.x > 0) {
+    } else if (buttonPressed(gp.buttons[14]) && player2.x > 0) {
         if(!player1collides(player2, player1, "x", -10)){
             player2.moveLeft();
         }
     }
-    if (buttonPressed(gp.buttons[14]) && player2.x + player2.width < 800) {
+    if (buttonPressed(gp.buttons[15]) && player2.x + player2.width < 800) {
         if(!player1collides(player2, player1, "x", 10)){
             player2.moveRight();
         }
-    } else if (buttonPressed(gp.buttons[12]) && player2.y + player2.height < 480) {
+    } else if (buttonPressed(gp.buttons[13]) && player2.y + player2.height < 480) {
         if(!player1collides(player2, player1, "y", 10)){
             player2.moveDown();
         }
