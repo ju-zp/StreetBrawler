@@ -14,6 +14,6 @@ but makes for a fun play.
 
 ### Technologies
 
-JavaScript
-Gamepad API 
-Ruby on Rails
+* JavaScript
+* Gamepad API 
+* Ruby on Rails
