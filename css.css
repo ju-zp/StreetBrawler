@@ -1,0 +1,146 @@
+canvas {
+    border:1px solid #000000;
+    background: url("assests/brawler_background.jpg");
+    background-size: 800px 500px;
+    z-index: -1;
+}
+
+
+
+
+#health-bars{
+position: relative;
+  margin-top: -50%;
+  margin-left: 5%;
+  z-index: 1;
+}
+#playerOnehealthBack{
+  z-index: -1;
+  border: 3px solid #000000;
+}
+
+#playerOne{
+
+  z-index: 2;
+  border: 3px solid #000000;
+  background: red;
+}
+
+#playerTwo{
+  margin-right: 20%;
+  transform: rotate(180deg);
+  border: 3px solid #000000;
+  background: red;
+  float: right;
+}
+
+#face{
+  border:0px solid #000000;
+  margin-left: 40%;
+  background-color:rgba(0,0,0,1);
+}
+
+#logo {
+  text-align: center;
+  letter-spacing: 1px;
+  color: rgb(13, 181, 211);
+    text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+             0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+             0 0 40px #A5F1FF;
+  position:relative;
+  
+}
+
+#form {
+  position: absolute;
+  top: 100px;
+  left: 35px;
+}
+
+#submit {
+  border-radius: 25px;
+  background-color: rgba(146, 15, 15, 0.295); /* Green */
+  height:20px; 
+  width:100px; 
+  margin: -20px -50px; 
+  border-color: rgba(0, 0, 0, 0.37);
+  box-shadow: 2px 2px 8px #141313;
+  color: rgb(13, 181, 211);
+  position:absolute;
+  top:85%; 
+  left:50%;
+  font-size: 16px;
+  color: rgb(6, 73, 136);
+}
+
+#leaderboardBtn {
+  border-radius: 25px;
+  background-color: rgba(146, 15, 15, 0.295); /* Green */
+  height:20px; 
+  margin: -20px -50px; 
+  border-color: rgba(0, 0, 0, 0.37);
+  box-shadow: 2px 2px 8px #141313;
+  position:relative;
+  top:50%; 
+  left:50%;
+  font-size: 16px;
+  color: rgb(6, 73, 136);
+}
+
+#leaderBoard {
+  border-radius: 25px;
+  background-image: linear-gradient(red, rgb(255,255,0,0.5));
+  padding: 20px; 
+  width: 230px;
+  position:absolute; 
+  top:150px;
+  left:260px; 
+  z-index:2;
+}
+
+#leaders {
+  margin-left: 20px;
+  letter-spacing: 1px;
+    text-shadow: 0 0 5px #A5F1FF, 0 0 10px #A5F1FF,
+             0 0 20px #A5F1FF, 0 0 30px #A5F1FF,
+             0 0 40px #A5F1FF;
+  position:relative;
+}
+
+#start {
+  border-radius: 25px;
+  background-color: rgba(146, 15, 15, 0.295); /* Green */
+  height:20px; 
+  width:100px; 
+  margin: -20px -50px; 
+  border-color: rgba(0, 0, 0, 0.37);
+  box-shadow: 2px 2px 8px #141313;
+  position:relative;
+  top:50%; 
+  left:50%;
+  font-size: 16px;
+  color: rgb(6, 73, 136);
+}
+
+#menu {
+  border-radius: 25px;
+  background-image: linear-gradient(red, rgb(255,255,0,0.5));
+  padding: 20px; 
+  height: 150px; 
+  position:absolute; 
+  top:150px;
+  left:260px; 
+  z-index:2;
+}
+
+#endGame {
+  border-radius: 25px;
+  background-image: linear-gradient(red, rgb(255,255,0,0.5));
+  padding: 20px; 
+  height: 150px; 
+  width: 270px;
+  position: absolute; 
+  top:150px;
+  left:260px; 
+  z-index:2;
+}
