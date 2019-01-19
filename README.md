@@ -2,6 +2,8 @@
 
 ![alt text](https://github.com/ju-zp/StreetBrawler/blob/master/Client/assests/screenshots/mainMenu.png "main menu")
 
+## [Video demo](https://youtu.be/2Qx8OMBL8uM)
+
 ### Introduction
 
 A street fighter clone using pure JavaScript. This project focuses on the diversity of JavaScript and uses Canvas elements for
@@ -10,7 +12,7 @@ view the leaderboard from the main menu. This contains information of users that
 have won. After starting a game a user can play against a friend. The X and O buttons are the action controls for PS4, and the 
 directional pad controls movement. After a game has finished the player with the highest health wins and can record their score.
 
-### [Video demo](https://youtu.be/2Qx8OMBL8uM)
+
 
 The project uses custom animations on the characters and when attack actions are fired, sound is also generated. This project was
 a fun build and was interesting to see just how much can be achieved without the use of external libraries. The game play is buggy
